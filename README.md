@@ -1,43 +1,33 @@
-# Full-Stack & AI Systems Engineering Portfolio
+# Gustavo Andre - Freelance Software Consultant Portfolio
 
 **Developer:** Gustavo Andre Argandoña Becerra (Andre Argandoña)  
 **Location:** Huánuco, Perú  
-**Live Site:** [Kuantum Educa](https://kuantumeduca.com) | [GitHub Profile](https://github.com/Just-a-Spider) | [LinkedIn](https://www.linkedin.com/in/andre-argando%C3%B1a-3011a6263/)  
-**Stack:** Angular 22, Three.js (`three` 0.185), WebGL 3D Starfield, Reactive i18n (`en` / `es`), Firebase Free Tier Hosting
+**Live Site:** [https://Just-a-Spider.github.io/portfolio/](https://Just-a-Spider.github.io/portfolio/)  
+**Stack:** Angular 22, Three.js (`three`), WebGL 3D Starfield, Reactive i18n (`en` / `es`), GitHub Pages
 
 ---
 
 ## Overview
 
-A high-performance, responsive single-page web portfolio designed with a No Man's Sky (NMS) space voyage theme. Instead of rigid slideshows, visitors fly through a continuous 3D space corridor passing celestial sector cards (`// Overview Planet`, `// Projects Sector`, `// Skills Nexus`, `// Experience Outpost`, `// Contact Portal`).
-
-```
-[ Top COSMIC Panel HUD ] ── [ Pixelated Spaceship Flight Track (0% -> 100%) ]
-        │
-        ├── [ 3D WebGL Starfield & Warp Speed Accelerator (Three.js) ]
-        │
-        └── [ Fluid Space Corridor: Overview ➔ Projects ➔ Skills ➔ Experience ➔ Contact ]
-```
+A high-performance, responsive single-page web portfolio designed to position me as a premium Freelance Software Consultant. It features a modern, glassmorphic UI with smooth tab-based navigation, backed by a highly optimized, interactive 3D WebGL starfield engine.
 
 ---
 
 ## Key Features
 
-- **Three.js 3D WebGL Space Engine:** 3D starfield (`THREE.Points`) with 3,000 star particles and ambient cyan (`#00f0ff`) & purple (`#a855f7`) nebulae point lights.
-- **Hyperdrive Warp Acceleration:** Scrolling velocity dynamically stretches 3D star particles into hyperdrive light streaks and moves camera forward through 3D space.
-- **Pixelated Spaceship Flight HUD Track:** A retro pixelated sci-fi spaceship icon (`.pixel-ship`) travels along the top HUD progress track (`0%` to `100%`) with dual animated plasma thruster trails.
-- **100% Scrollbar Elimination:** Hidden scrollbars globally (`scrollbar-width: none !important; ::-webkit-scrollbar { display: none !important; }`) for uninterrupted space flight.
-- **Developer-Grade Reactive i18n (EN / ES):** Typed `TranslationService` in `src/app/i18n.ts` supporting instant language switching across 100% of UI cards, skills, bullet points, and modals.
-- **Flagship Systems Showcase:** Featured cards for Kuantum Educa (`https://kuantumeduca.com`), SysMon 3DS (Rust server + devkitARM C homebrew), AI Assistant, and YOLO Computer Vision.
-- **Live & Repo Link Integration:** Side-by-side Live Site icons and GitHub repository links.
+- **Three.js 3D WebGL Space Engine:** 3D starfield (`THREE.Points`) with custom-generated circular particles and ambient glowing nebulae.
+- **Premium Glassmorphic UI:** Tab-based architecture (`Overview`, `Portfolio`, `Services`, `Experience`, `Contact`) with interactive hover states, dynamic CSS gradients, and pulsing CTA buttons.
+- **Developer-Grade Reactive i18n (EN / ES):** Typed `TranslationService` in `src/app/i18n.ts` supporting instant, zero-reload language switching across the entire UI.
+- **Timeline Architecture:** A custom vertical CSS timeline layout for the Professional Experience track record.
+- **Flagship Systems Showcase:** Featured case studies for large-scale projects like Kuantum Educa (handling thousands of simultaneous exams), SysMon 3DS (Rust/C homebrew), and AI Computer Vision systems.
 
 ---
 
 ## Hardware & Performance Optimizations
 
-1. **Adaptive Particle & Quality Scaling:** Auto-detects mobile screens (`width < 768`) or low-core CPUs (`hardwareConcurrency <= 4`) to reduce star particles from 3,000 down to 1,000 and caps `devicePixelRatio` to `1.0`.
+1. **Adaptive Particle Scaling:** Auto-detects mobile screens (`width < 768`) or low-core CPUs to reduce star particles from 3,000 down to 1,000, ensuring buttery-smooth 60fps across all devices.
 2. **Zero-GC Buffers:** Uses `THREE.BufferGeometry` with `Float32Array` attributes to eliminate garbage collection frame drops.
-3. **Tab Inactivity Pause:** Automatically halts the Three.js render loop when `document.hidden` is true (0% CPU/GPU overhead when backgrounded).
+3. **Tab Inactivity Pause:** Automatically halts the Three.js render loop when the browser tab is hidden (0% CPU/GPU overhead).
 
 ---
 
@@ -45,18 +35,15 @@ A high-performance, responsive single-page web portfolio designed with a No Man'
 
 ```text
 ~/Desktop/Projects/Portfolio/
-├── firebase.json            # Firebase Hosting CDN & SPA rewrite rules
-├── .firebaserc              # Firebase project target definition
-├── angular.json             # Angular 22 workspace build configuration
-├── package.json             # Pnpm dependencies (Angular 22, Three.js)
+├── angular.json             # Angular workspace build configuration
+├── package.json             # Dependencies (Angular, Three.js, angular-cli-ghpages)
 └── src/
     ├── main.ts              # Angular main entrypoint
     ├── index.html           # HTML template & Google Fonts (Outfit, Plus Jakarta Sans)
-    ├── styles.css           # Global CSS, cosmic theme, hidden scrollbars, HUD track
+    ├── styles.css           # Global CSS, cosmic theme, UI animations, mobile layout
     └── app/
         ├── app.ts           # Angular App component, Three.js WebGL engine, Signals
-        ├── app.html         # HUD top panel, pixelated spaceship, sector cards
-        ├── app.css          # Component layout & frosted glass styles
+        ├── app.html         # Tab-based UI, glass cards, timeline, modals
         └── i18n.ts          # Typed English & Spanish translation dictionaries
 ```
 
@@ -66,8 +53,7 @@ A high-performance, responsive single-page web portfolio designed with a No Man'
 
 ### 1. Install Dependencies
 ```bash
-cd ~/Desktop/Projects/Portfolio
-pnpm install
+npm install
 ```
 
 ### 2. Run Local Development Server
@@ -76,26 +62,16 @@ npm start
 ```
 Navigate to `http://localhost:4200/` in your browser.
 
-### 3. Build Production Bundle
-```bash
-npm run build
-```
-Output generated at `dist/portfolio/browser`.
-
 ---
 
-## Deployment Guide (Firebase Free Tier Hosting)
+## Deployment Guide (GitHub Pages)
 
-This repository is configured for zero-cost static deployment on **Firebase Hosting Free Tier**.
+This repository is configured for zero-cost static deployment via GitHub Pages using the `angular-cli-ghpages` utility.
 
-### 1. Login to Firebase CLI
+To deploy a new version to production:
 ```bash
-npx firebase-tools login
-```
-
-### 2. Deploy to Firebase CDN
-```bash
-npx firebase-tools deploy --only hosting
+npx ng build --base-href=/portfolio/
+npx angular-cli-ghpages --dir=dist/portfolio
 ```
 
 ---
@@ -103,4 +79,4 @@ npx firebase-tools deploy --only hosting
 ## License & Credits
 
 Designed & Engineered by **Gustavo Andre Argandoña Becerra**  
-Built with **Angular 22** & **Three.js**.
+Built with **Angular** & **Three.js**.
