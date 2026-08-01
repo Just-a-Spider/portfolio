@@ -1,0 +1,366 @@
+<!-- Three.js 3D WebGL Canvas -->
+<canvas #nodeCanvas id="node-canvas"></canvas>
+
+<!-- Top COSMIC Space HUD Panel & Pixelated Spaceship Flight Track -->
+<header class="quick-nav">
+  <div class="hud-top-bar">
+    <nav class="nav-buttons" aria-label="Space Navigation">
+      <button 
+        class="nav-btn" 
+        [class.active]="activeSection() === 'overview'"
+        (click)="scrollToSection('overview')">
+        <i class="fas fa-space-shuttle"></i> <span class="nav-text">{{ t().nav.overview }}</span>
+      </button>
+      <button 
+        class="nav-btn" 
+        [class.active]="activeSection() === 'projects'"
+        (click)="scrollToSection('projects')">
+        <i class="fas fa-cubes"></i> <span class="nav-text">{{ t().nav.projects }}</span>
+      </button>
+      <button 
+        class="nav-btn" 
+        [class.active]="activeSection() === 'skills'"
+        (click)="scrollToSection('skills')">
+        <i class="fas fa-code"></i> <span class="nav-text">{{ t().nav.skills }}</span>
+      </button>
+      <button 
+        class="nav-btn" 
+        [class.active]="activeSection() === 'experience'"
+        (click)="scrollToSection('experience')">
+        <i class="fas fa-layer-group"></i> <span class="nav-text">{{ t().nav.experience }}</span>
+      </button>
+      <button 
+        class="nav-btn" 
+        [class.active]="activeSection() === 'contact'"
+        (click)="scrollToSection('contact')">
+        <i class="fas fa-paper-plane"></i> <span class="nav-text">{{ t().nav.contact }}</span>
+      </button>
+    </nav>
+
+    <div class="hud-controls" style="display: flex; align-items: center; gap: 10px;">
+      <!-- Developer Language Switcher -->
+      <div class="lang-toggle">
+        <button class="lang-btn" [class.active]="currentLang() === 'en'" (click)="setLang('en')">EN</button>
+        <button class="lang-btn" [class.active]="currentLang() === 'es'" (click)="setLang('es')">ES</button>
+      </div>
+
+      <div style="display: flex; gap: 6px; align-items: center;">
+        <a [href]="profile.github" target="_blank" class="btn btn-secondary" style="padding: 4px 10px; font-size: 0.8rem;" title="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a [href]="profile.linkedin" target="_blank" class="btn btn-secondary" style="padding: 4px 10px; font-size: 0.8rem;" title="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</header>
+
+
+
+<!-- Main Tab View Wrapper -->
+<main class="tab-wrapper">
+    
+  @if (activeSection() === 'overview') {
+    <!-- SECTION 1: OVERVIEW PLANET -->
+    <section id="overview" class="tab-section fade-in">
+    <div class="section-content" style="max-width: 960px; padding-top: 10px;">
+      
+      <div style="display: flex; align-items: center; gap: 28px; margin-bottom: 24px; flex-wrap: wrap;">
+        <!-- Profile Photo / Avatar Frame Placeholder -->
+        <div class="profile-frame float-anim">
+          @if (profilePhoto()) {
+            <img [src]="profilePhoto()" [alt]="profile.name" class="profile-img">
+          } @else {
+            <i class="fas fa-user-astronaut profile-placeholder-icon"></i>
+          }
+        </div>
+
+        <div>
+          <div class="eng-badge" style="margin-bottom: 12px;">
+            <div class="dot-pulse"></div>
+            <span>{{ t().hero.status }}</span>
+          </div>
+          <h1 style="font-size: 3rem; font-weight: 800; line-height: 1.1;">
+            {{ t().hero.titleMain }} <br>
+            <span class="text-gradient-animated">{{ t().hero.titleHighlight }}</span> {{ t().hero.titleSuffix }}.
+          </h1>
+        </div>
+      </div>
+
+      <p style="font-size: 1.1rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 28px; max-width: 860px;">
+        {{ t().hero.subtitle }}
+      </p>
+
+
+
+      <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+        <button (click)="scrollToSection('projects')" class="btn btn-primary pulse-glow">
+          <i class="fas fa-cubes"></i> {{ t().hero.exploreBtn }}
+        </button>
+        <button (click)="scrollToSection('contact')" class="btn btn-secondary">
+          <i class="fas fa-paper-plane"></i> {{ t().hero.contactBtn }}
+        </button>
+      </div>
+    </div>
+    </section>
+  }
+
+  @if (activeSection() === 'projects') {
+  <!-- SECTION 2: PROJECTS SECTOR -->
+  <section id="projects" class="tab-section fade-in">
+    <div class="section-content">
+      <div style="margin-bottom: 20px;">
+        <span style="color: var(--cosmic-cyan); font-family: var(--font-code); font-size: 0.85rem; text-transform: uppercase;">{{ t().projects.screenTag }}</span>
+        <h2 style="font-size: 2.2rem; font-weight: 700;">{{ t().projects.title }}</h2>
+      </div>
+
+      <!-- Category Filters -->
+      <div class="category-filter">
+        <button 
+          class="filter-btn" 
+          [class.active]="selectedCategory() === 'all'"
+          (click)="setCategory('all')">
+          <i class="fas fa-border-all"></i> {{ t().projects.all }}
+        </button>
+        <button 
+          class="filter-btn" 
+          [class.active]="selectedCategory() === 'fullstack'"
+          (click)="setCategory('fullstack')">
+          <i class="fas fa-layer-group"></i> {{ t().projects.fullstack }}
+        </button>
+        <button 
+          class="filter-btn" 
+          [class.active]="selectedCategory() === 'ai-cloud'"
+          (click)="setCategory('ai-cloud')">
+          <i class="fas fa-brain"></i> {{ t().projects.aiCloud }}
+        </button>
+        <button 
+          class="filter-btn" 
+          [class.active]="selectedCategory() === 'systems'"
+          (click)="setCategory('systems')">
+          <i class="fas fa-microchip"></i> {{ t().projects.systems }}
+        </button>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px; max-height: calc(100vh - 250px); overflow-y: auto; padding-right: 8px;">
+        @for (project of filteredProjects(); track project.id) {
+          <div 
+            class="glass-card interactive-card" 
+            [class.glass-card-purple]="project.id === 'sysmon-3ds'"
+            style="padding: 24px; cursor: pointer; display: flex; flex-direction: column; justify-content: space-between;"
+            (click)="openProjectModal(project)">
+            
+            <div>
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+                <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(7, 14, 32, 0.9); border: 1.5px solid var(--border-glass-hover); color: var(--cosmic-cyan); display: flex; align-items: center; justify-content: center; font-size: 1.15rem;">
+                  <i class="fas {{ project.icon }}"></i>
+                </div>
+                @if (project.badge) {
+                  <span class="eng-badge" style="font-size: 0.725rem;">{{ project.badge }}</span>
+                }
+              </div>
+
+              <h3 style="font-size: 1.3rem; margin-bottom: 8px;">{{ project.title }}</h3>
+              <p style="color: var(--text-muted); font-size: 0.925rem; margin-bottom: 18px; line-height: 1.5;">{{ project.shortDesc }}</p>
+
+              <div class="tech-pills" style="margin-bottom: 18px;">
+                @for (tech of project.techStack; track tech) {
+                  <span class="tech-pill">{{ tech }}</span>
+                }
+              </div>
+            </div>
+
+            <div style="padding-top: 14px; border-top: 1px solid rgba(56, 189, 248, 0.15); display: flex; align-items: center; justify-content: space-between;">
+              <span style="font-size: 0.8rem; color: var(--cosmic-cyan); font-family: var(--font-code); font-weight: 500; display: inline-flex; align-items: center; gap: 6px;">
+                {{ t().projects.viewArch }} <i class="fas fa-chevron-right"></i>
+              </span>
+
+              <div style="display: flex; gap: 14px; align-items: center;">
+                @if (project.liveUrl) {
+                  <a [href]="project.liveUrl" target="_blank" (click)="$event.stopPropagation()" style="color: var(--cosmic-cyan);" [title]="t().projects.liveDemo">
+                    <i class="fas fa-external-link-alt" style="font-size: 1rem;"></i>
+                  </a>
+                }
+                @if (project.repoUrl) {
+                  <a [href]="project.repoUrl" target="_blank" (click)="$event.stopPropagation()" style="color: var(--text-dim);" [title]="t().projects.repo">
+                    <i class="fab fa-github" style="font-size: 1.15rem;"></i>
+                  </a>
+                }
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+  }
+
+  @if (activeSection() === 'skills') {
+  <!-- SECTION 3: SKILLS NEXUS -->
+  <section id="skills" class="tab-section fade-in">
+    <div class="section-content">
+      <div style="margin-bottom: 32px;">
+        <span style="color: var(--cosmic-cyan); font-family: var(--font-code); font-size: 0.85rem; text-transform: uppercase;">{{ t().skills.screenTag }}</span>
+        <h2 style="font-size: 2.2rem; font-weight: 700;">{{ t().skills.title }}</h2>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
+        @for (cat of skillCategories(); track cat.name) {
+          <div class="glass-card" style="padding: 28px;">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px;">
+              <i class="fas {{ cat.icon }}" style="color: var(--cosmic-cyan); font-size: 1.25rem;"></i>
+              <h3 style="font-size: 1.15rem;">{{ cat.name }}</h3>
+            </div>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+              @for (skill of cat.skills; track skill.name) {
+                <div class="tech-pill" [style.border-color]="skill.highlight ? 'var(--cosmic-cyan)' : 'rgba(56, 189, 248, 0.2)'" style="display: flex; align-items: center; gap: 8px; font-size: 0.825rem; padding: 6px 14px;">
+                  <span [style.color]="skill.highlight ? '#ffffff' : 'var(--text-main)'" [style.font-weight]="skill.highlight ? '600' : '400'">
+                    {{ skill.name }}
+                  </span>
+                  <span style="font-size: 0.65rem; font-family: var(--font-code); color: var(--text-dim); opacity: 0.8;">
+                    {{ skill.level }}
+                  </span>
+                </div>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+  }
+
+  @if (activeSection() === 'experience') {
+  <!-- SECTION 4: EXPERIENCE OUTPOST -->
+  <section id="experience" class="tab-section fade-in">
+    <div class="section-content">
+      <div style="margin-bottom: 32px;">
+        <span style="color: var(--cosmic-cyan); font-family: var(--font-code); font-size: 0.85rem; text-transform: uppercase;">{{ t().experience.screenTag }}</span>
+        <h2 style="font-size: 2.2rem; font-weight: 700;">{{ t().experience.title }}</h2>
+      </div>
+
+      <div class="timeline-container" style="max-height: calc(100dvh - 200px); overflow-y: auto; padding-right: 12px;">
+        @for (exp of experiences(); track exp.company) {
+          <div class="timeline-item">
+            <div class="timeline-node"></div>
+            <div class="glass-card interactive-card" style="padding: 24px;">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+                <div>
+                  <h3 style="font-size: 1.25rem;">{{ exp.role }}</h3>
+                  <span style="color: var(--cosmic-cyan); font-weight: 600; font-size: 0.95rem;">{{ exp.company }}</span> • <span style="font-family: var(--font-code); color: var(--text-dim); font-size: 0.85rem;">{{ exp.location }}</span>
+                </div>
+                <span class="eng-badge">{{ exp.period }}</span>
+              </div>
+
+              <ul style="padding-left: 20px; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px; display: flex; flex-direction: column; gap: 6px;">
+                @for (bullet of exp.highlights; track bullet) {
+                  <li>{{ bullet }}</li>
+                }
+              </ul>
+
+              <div class="tech-pills">
+                @for (t of exp.stack; track t) {
+                  <span class="tech-pill">{{ t }}</span>
+                }
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+  }
+
+  @if (activeSection() === 'contact') {
+  <!-- SECTION 5: CONTACT PORTAL -->
+  <section id="contact" class="tab-section fade-in">
+    <div class="section-content" style="display: flex; align-items: center; justify-content: center; min-height: calc(100vh - 160px);">
+      <div class="glass-card glass-card-purple" style="padding: 48px; text-align: center; max-width: 680px; width: 100%;">
+        <span style="color: var(--cosmic-purple); font-family: var(--font-code); font-size: 0.85rem; text-transform: uppercase;">{{ t().contact.screenTag }}</span>
+        <h2 style="font-size: 2.2rem; margin: 12px 0;">{{ t().contact.title }}</h2>
+        <p style="color: var(--text-muted); margin-bottom: 32px; font-size: 1.05rem;">
+          {{ t().contact.desc }}
+        </p>
+
+        <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+          <a [href]="'mailto:' + profile.email" class="btn btn-primary">
+            <i class="fas fa-paper-plane"></i> {{ t().contact.sendEmail }}
+          </a>
+          <a [href]="profile.github" target="_blank" class="btn btn-secondary">
+            <i class="fab fa-github"></i> GitHub
+          </a>
+          <a [href]="profile.linkedin" target="_blank" class="btn btn-secondary">
+            <i class="fab fa-linkedin"></i> LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  }
+
+</main>
+
+<!-- Modal for System Details -->
+@if (selectedProject(); as proj) {
+  <div style="position: fixed; inset: 0; background: rgba(5, 10, 24, 0.88); backdrop-filter: blur(16px); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 24px;" (click)="closeModal()">
+    <div class="glass-card" style="width: 100%; max-width: 700px; max-height: 90vh; overflow-y: auto; padding: 32px; position: relative;" (click)="$event.stopPropagation()">
+      
+      <button style="position: absolute; top: 20px; right: 20px; background: none; border: none; color: var(--text-muted); font-size: 1.25rem; cursor: pointer;" (click)="closeModal()">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 18px;">
+        <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(7, 14, 32, 0.9); border: 1.5px solid var(--border-glass-hover); color: var(--cosmic-cyan); display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+          <i class="fas {{ proj.icon }}"></i>
+        </div>
+        <div>
+          <h2 style="font-size: 1.6rem;">{{ proj.title }}</h2>
+          @if (proj.badge) {
+            <span class="eng-badge" style="margin-top: 4px;">{{ proj.badge }}</span>
+          }
+        </div>
+      </div>
+
+      <p style="color: var(--text-main); font-size: 1rem; line-height: 1.7; margin-bottom: 22px;">
+        {{ proj.fullDesc }}
+      </p>
+
+      @if (proj.metrics && proj.metrics.length > 0) {
+        <div style="margin-bottom: 22px; background: rgba(7, 14, 32, 0.8); padding: 16px; border-radius: 10px; border: 1px solid var(--border-glass);">
+          <h4 style="font-size: 0.875rem; margin-bottom: 8px; color: var(--cosmic-cyan); font-family: var(--font-code);">{{ t().modal.sysHighlights }}</h4>
+          <ul style="padding-left: 20px; color: var(--text-muted); font-size: 0.9rem; display: flex; flex-direction: column; gap: 6px;">
+            @for (m of proj.metrics; track m) {
+              <li>{{ m }}</li>
+            }
+          </ul>
+        </div>
+      }
+
+      <div style="margin-bottom: 26px;">
+        <h4 style="font-size: 0.825rem; margin-bottom: 8px; color: var(--text-dim); font-family: var(--font-code);">{{ t().modal.techStack }}</h4>
+        <div class="tech-pills">
+          @for (tech of proj.techStack; track tech) {
+            <span class="tech-pill" style="font-size: 0.8rem; padding: 6px 12px;">{{ tech }}</span>
+          }
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 12px; justify-content: flex-end; flex-wrap: wrap;">
+        @if (proj.liveUrl) {
+          <a [href]="proj.liveUrl" target="_blank" class="btn btn-primary">
+            <i class="fas fa-external-link-alt"></i> {{ t().modal.liveDemo }}
+          </a>
+        }
+        @if (proj.repoUrl) {
+          <a [href]="proj.repoUrl" target="_blank" class="btn btn-secondary">
+            <i class="fab fa-github"></i> {{ t().modal.repo }}
+          </a>
+        }
+        <button class="btn btn-secondary" (click)="closeModal()">{{ t().modal.close }}</button>
+      </div>
+    </div>
+  </div>
+}
