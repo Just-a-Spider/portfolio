@@ -44,9 +44,23 @@ export interface RecognitionData {
   icon: string;
 }
 
+export interface AboutPillar {
+  icon: string;
+  title: string;
+  desc: string;
+}
+
+export interface AboutData {
+  tag: string;
+  title: string;
+  subtitle: string;
+  pillars: AboutPillar[];
+}
+
 export interface TranslationSchema {
   nav: {
     overview: string;
+    about: string;
     projects: string;
     skills: string;
     experience: string;
@@ -64,6 +78,7 @@ export interface TranslationSchema {
     copyEmailBtn: string;
     copiedToast: string;
   };
+  about: AboutData;
   projects: {
     tag: string;
     title: string;
@@ -102,6 +117,8 @@ export interface TranslationSchema {
     locationLabel: string;
     availabilityLabel: string;
     availabilityValue: string;
+    targetRolesLabel: string;
+    targetRolesValue: string;
     copyEmail: string;
     sendEmail: string;
   };
@@ -124,103 +141,135 @@ export const TRANSLATIONS: Record<Lang, TranslationSchema> = {
   en: {
     nav: {
       overview: 'Overview',
-      projects: 'Systems & Projects',
-      skills: 'Technical Skills',
+      about: 'About',
+      projects: 'Projects',
+      skills: 'Skills',
       experience: 'Experience',
       contact: 'Contact',
       downloadCv: 'Resume (PDF)'
     },
     hero: {
-      badge: 'Systems & Full-Stack Engineer · 1.5+ YOE · 10th Cycle UDH',
-      titleMain: 'Building Scalable',
-      titleHighlight: 'Event-Driven Systems',
-      titleSuffix: '& Low-Level Tools',
-      subtitle: 'Senior Systems Engineering student with 1.5+ years of professional experience architecting highly available web platforms, event-driven cloud pipelines, and low-level Rust systems applications.',
-      viewProjectsBtn: 'Explore Systems',
-      downloadCvBtn: 'Download CV',
+      badge: 'OPEN TO WORK · JUNIOR FULL-STACK DEVELOPER',
+      titleMain: 'Building Reliable',
+      titleHighlight: 'Full-Stack Web Applications',
+      titleSuffix: '& Scalable Cloud Backends',
+      subtitle: 'Junior Full-Stack Developer with 1.5+ years of practical experience developing reactive web applications with Angular, robust REST APIs with Python (FastAPI, Django), and structured data systems with PostgreSQL. Final-year Systems Engineering student at Universidad de Huánuco (Upper Third).',
+      viewProjectsBtn: 'Explore Work',
+      downloadCvBtn: 'Download CV (PDF)',
       copyEmailBtn: 'Copy Email',
       copiedToast: 'Email copied to clipboard!'
     },
+    about: {
+      tag: 'ABOUT ME',
+      title: 'Professional Profile & Engineering Strengths',
+      subtitle: 'A disciplined approach to software development focused on pragmatic architectures, clean code, and rapid technical adaptability.',
+      pillars: [
+        {
+          icon: 'fa-layer-group',
+          title: 'Full-Stack Web Development',
+          desc: 'End-to-end development of web applications: designing modular REST APIs with FastAPI and Django, coupled with clean, reactive frontends using Angular (Signals) and TypeScript.'
+        },
+        {
+          icon: 'fa-cloud',
+          title: 'Data & Cloud Fundamentals',
+          desc: 'Hands-on experience structuring PostgreSQL databases, containerizing applications with Docker, deploying microservices to Google Cloud Run, and leveraging Firebase Pub/Sub for async tasks.'
+        },
+        {
+          icon: 'fa-brain',
+          title: 'Fast Learning & Problem Solving',
+          desc: 'Demonstrated ability to pick up new frameworks, libraries, and protocols rapidly. 1st place winner in regional inter-university programming competitions.'
+        },
+        {
+          icon: 'fa-users-cog',
+          title: 'Accountability & Engineering Rigor',
+          desc: 'Taking full ownership from requirements gathering to testing and deployment. Curious about system internals, networking, and low-level computer science concepts.'
+        }
+      ]
+    },
     projects: {
       tag: 'PORTFOLIO',
-      title: 'Featured Systems & Engineering Projects',
-      subtitle: 'Selected production platforms, systems companions, and AI-driven tools with measurable architectural impact.',
-      all: 'All Systems',
-      fullstack: 'Full-Stack & Cloud',
-      systems: 'Systems & Rust',
+      title: 'Featured Projects & Systems',
+      subtitle: 'Production web platforms, low-level systems explorations, and automation tools built with high technical rigor.',
+      all: 'All Projects',
+      fullstack: 'Full-Stack & Web',
+      systems: 'Systems & Tools',
       aiCloud: 'AI & Automation',
-      featuredBadge: 'Featured System',
-      viewArch: 'Architecture & Details',
+      featuredBadge: 'Featured Project',
+      viewArch: 'View Details',
       liveDemo: 'Live Application',
       repo: 'Source Code',
-      keyHighlights: 'Key Engineering Highlights:'
+      keyHighlights: 'Key Engineering Highlights'
     },
     skills: {
-      tag: 'CAPABILITIES',
-      title: 'Technical Domains & Stack',
-      subtitle: 'Core competencies across cloud architecture, backend engineering, low-level systems, and reactive user interfaces.'
+      tag: 'TECHNICAL SKILLS',
+      title: 'Skills & Technology Stack',
+      subtitle: 'Grounded technical capabilities across modern web development, cloud services, and software engineering tools.',
     },
     experience: {
-      tag: 'TRACK RECORD',
-      title: 'Professional Experience',
-      subtitle: 'Hands-on software development and cloud operations delivering mission-critical applications.',
-      honorsTitle: 'Academic Honors & Recognitions',
+      tag: 'TRAJECTORY',
+      title: 'Work Experience & Education',
+      subtitle: '1.5+ years of practical software development experience and continuous academic excellence.',
+      honorsTitle: 'Honors & Recognitions',
       educationTitle: 'Education',
-      educationDegree: 'B.S. in Systems and Informatics Engineering (10th cycle, upper third)',
-      educationSchool: 'Universidad de Huánuco, Peru',
-      educationPeriod: '2021 – Present (Graduating Dec 2026)',
-      educationHonors: '3-time 1st Place of the Academic Cohort'
+      educationDegree: 'Bachelor of Science in Systems & Informatics Engineering',
+      educationSchool: 'Universidad de Huánuco (UDH) · Huánuco, Peru',
+      educationPeriod: '2021 – Dec 2026 (10th Cycle / Graduating)',
+      educationHonors: 'Academic Merit (Upper Third / Tercio Superior)'
     },
     contact: {
       tag: 'GET IN TOUCH',
-      title: "Let's build something extraordinary.",
-      desc: "Open to full-time remote roles (LATAM/Americas) and hybrid/on-site positions in Lima, Peru. Let's discuss backend architectures, systems engineering, or full-stack opportunities.",
+      title: "Let's Build Something Together",
+      desc: 'Available for Junior Full-Stack Developer, Backend Engineer, or Web Developer roles (Remote across Americas/Global or Hybrid in Peru).',
       emailLabel: 'Direct Email',
-      locationLabel: 'Location',
-      availabilityLabel: 'Availability',
-      availabilityValue: 'Immediate · Flexible schedule for morning/async until graduation',
-      copyEmail: 'Copy Email Address',
+      locationLabel: 'Location & Timezone',
+      availabilityLabel: 'Status',
+      availabilityValue: 'Open to Opportunities (Immediate)',
+      targetRolesLabel: 'Target Roles',
+      targetRolesValue: 'Junior Full-Stack / Backend / Web Engineer',
+      copyEmail: 'Copy Email',
       sendEmail: 'Send Email'
     },
     modal: {
-      architectureTitle: 'System Architecture & Data Flow',
-      keyDecisions: 'Key Architectural Decisions',
-      techStack: 'Tech Stack & Infrastructure',
-      metrics: 'Quantified Impact & Metrics',
+      architectureTitle: 'Architecture & Technical Overview',
+      keyDecisions: 'Key Engineering Highlights',
+      techStack: 'Technologies Used',
+      metrics: 'Outcomes & Metrics',
       repo: 'View Repository',
-      liveDemo: 'Visit Live Platform',
-      close: 'Close Window'
+      liveDemo: 'Visit Live Project',
+      close: 'Close'
     },
     projectsList: [
       {
         id: 'kuantum-educa',
         title: 'Kuantum Educa Platform',
         category: 'fullstack',
-        featured: true,
-        badge: 'Flagship Full-Stack System',
-        icon: 'fa-graduation-cap',
-        liveUrl: 'https://kuantumeduca.com',
-        subtitle: 'Scalable Event-Driven Simulation Platform & Semantic RAG Engine',
-        shortDesc: 'Sole architect and developer for an educational platform processing thousands of simultaneous exam simulations with zero UI latency and automated AI career guidance.',
-        fullDesc: 'Architected and deployed a multi-tier educational platform from scratch. Designed an asynchronous, three-stage Firebase Cloud Functions and Pub/Sub event pipeline that offloads heavy simulation data aggregation into atomic transaction workers. Implemented a dedicated FastAPI microservice containerized with Docker on Google Cloud Run to process payments and semantic RAG matching with PostgreSQL (pgvector/HNSW). Developed the frontend with Angular 19 using native Signals for reactive state management and PrimeNG for high-density administrative dashboards.',
-        techStack: ['Angular 19 (Signals)', 'FastAPI (Python)', 'Firebase Cloud Functions', 'Google Cloud Pub/Sub', 'PostgreSQL (pgvector)', 'Docker', 'Google Cloud Run', 'Gemini 3.1 Flash-Lite', 'PrimeNG', 'TailwindCSS'],
+        subtitle: 'Full-Stack Exam Prep & Simulation Platform',
+        shortDesc: 'Production web platform built with Angular 19, FastAPI on Google Cloud Run, and Firebase Pub/Sub for asynchronous simulation handling.',
+        fullDesc: 'Sole architect and developer of Kuantum Educa from scratch. Built a decoupled system where student exam submissions are queued via Firebase Pub/Sub for reliable asynchronous aggregation during traffic spikes. Developed a Dockerized FastAPI backend deployed on Google Cloud Run for transaction and user management. Prototyped and tested a semantic vocational guidance module using PostgreSQL pgvector in staging environments.',
+        techStack: ['Angular 19', 'Signals', 'FastAPI (Python)', 'Firebase Pub/Sub', 'PostgreSQL (pgvector)', 'Docker', 'Google Cloud Run', 'PrimeNG'],
         metrics: [
-          'Handled thousands of concurrent simulation evaluations under peak exam loads without downtime',
-          'RAG pipeline indexing 200+ academic degree programs and 105 SUNEDU-licensed universities',
-          'Decoupled payments and inference onto Google Cloud Run, achieving zero cold starts with CPU throttling'
+          'Asynchronous simulation aggregation via Firebase Pub/Sub',
+          'FastAPI microservice containerized with Docker on Google Cloud Run',
+          'Prototyped & tested pgvector career matching in staging',
+          'Reactive administrative UI built with Angular 19 Signals & PrimeNG'
         ],
+        liveUrl: 'https://kuantum.pe',
+        badge: 'Flagship Web Platform',
+        featured: true,
+        icon: 'fa-graduation-cap',
         architectureDetails: {
           flow: [
-            'Client (Angular 19) submits completed student simulation via lightweight HTTPS trigger',
-            'Lightweight Cloud Function saves raw attempt and flags state as pending',
-            'Cron dispatcher triggers Google Cloud Pub/Sub topics per simulation batch',
-            'Single-instance worker processes batch results in atomic transaction (reads-before-writes)',
-            'FastAPI service queries PostgreSQL (pgvector HNSW index) for semantic career matching'
+            'Student completes multi-topic admission simulation in Angular 19 frontend',
+            'Submission payload pushed to Firebase Pub/Sub asynchronous queue',
+            'Cloud Functions worker aggregates scores, percentile ranks, and topic weaknesses',
+            'FastAPI microservice on Google Cloud Run handles user attempts and PostgreSQL storage',
+            'Administrative dashboard renders real-time analytics with server-side pagination'
           ],
           keyDecisions: [
-            'Decoupled analytics from UI write paths to guarantee responsive student experience',
-            'Used Angular Signals instead of RxJS subscriptions for synchronous, fine-grained DOM updates',
-            'Implemented hybrid inference (local Ollama for dev/staging, Gemini Flash in production) saving 100% API costs during development'
+            'Asynchronous Pub/Sub ingestion ensures zero UI freezing during concurrent test submissions',
+            'FastAPI + Cloud Run keeps operational costs low with fast autoscaling',
+            'Angular Signals provide fine-grained reactivity and minimal change detection overhead',
+            'Vocational matching tested with PostgreSQL pgvector embeddings in staging'
           ]
         }
       },
@@ -228,473 +277,524 @@ export const TRANSLATIONS: Record<Lang, TranslationSchema> = {
         id: 'sysmon-3ds',
         title: 'SysMon — 3DS Systems Companion',
         category: 'systems',
-        featured: true,
-        badge: 'Rust & C Homebrew System',
-        icon: 'fa-gamepad',
-        repoUrl: 'https://github.com/Just-a-Spider/SysMon',
-        subtitle: 'Wireless PC Telemetry Monitor & Kernel-Level Macro Deck',
-        shortDesc: 'Turns a Nintendo 3DS handheld into a wireless real-time PC telemetry display, tap-to-kill process manager, and Linux macro pad over Wi-Fi.',
-        fullDesc: 'Engineered a full-stack systems project comprising an asynchronous Rust PC server and an embedded C client on Nintendo 3DS homebrew. The Rust daemon uses axum and tokio for lightweight API handling, sysinfo for real-time hardware telemetry (CPU/GPU temps, RAM, fan speeds), and the Linux evdev/uinput subsystem to instantiate a virtual keyboard device for kernel-level macro execution. Packaged natively into a distributable Linux RPM using cargo-generate-rpm with udev permission rules. The 3DS client is compiled to native .cia using devkitARM and libctru, featuring zero-dependency byte buffer parsing.',
-        techStack: ['Rust (axum, tokio, evdev)', 'C (devkitARM, libctru)', 'Linux (RPM, udev, systemd)', 'D-Bus / MPRIS', 'Wayland Screencast (ashpd)', 'WebSockets / HTTP'],
+        subtitle: 'Low-Level PC Telemetry & Touch Controller via 3DS',
+        shortDesc: 'A personal systems programming project converting a Nintendo 3DS into a secondary hardware monitor and macro pad over Wi-Fi using Rust (Tokio) and C.',
+        fullDesc: 'A personal project built to explore low-level systems programming, networking, and Linux kernel drivers. Developed a multi-threaded Rust server with Tokio to gather live hardware stats and virtualize input events via /dev/uinput. Wrote a low-overhead C client for the 3DS using devkitARM with zero-heap TCP packet parsing.',
+        techStack: ['Rust 2024', 'Tokio', 'C (devkitARM)', 'evdev / uinput', 'sysinfo', 'Linux RPM'],
         metrics: [
-          'Sub-millisecond latency telemetry and macro dispatch over local Wi-Fi',
-          'Kernel-level virtual input device bypassing Wayland synthetic event restrictions',
-          'Production RPM package installable on Linux and native .cia binary on real 3DS hardware'
+          'Sub-millisecond local network response time (<1ms)',
+          'Zero-heap string and packet parsing in C (libctru)',
+          'Linux kernel input injection via /dev/uinput and evdev',
+          'Packaged as a native Fedora/RHEL RPM package'
         ],
-        architectureDetails: {
-          flow: [
-            'Rust daemon starts in Linux system tray, reading telemetry via sysinfo and D-Bus MPRIS',
-            '3DS client establishes authenticated TCP/HTTP connection to server port',
-            'Server streams live CPU/GPU/RAM metrics and active heavy processes to handheld screen',
-            'User touches macro tab on 3DS bottom screen -> transmits command packet over Wi-Fi',
-            'Rust server writes input events to /dev/uinput virtual device or executes shell pipeline'
-          ],
-          keyDecisions: [
-            'Used raw buffer scanning (strstr/sscanf) on 3DS to eliminate memory overhead from bulky JSON libraries',
-            'Implemented uinput virtual kernel device with udev rules to guarantee compatibility on modern Wayland compositors',
-            'Integrated local web dashboard with PIN auth for secure configuration from PC localhost'
-          ]
-        }
+        repoUrl: 'https://github.com/Just-a-Spider/SysMon',
+        badge: 'Personal Systems Project',
+        featured: true,
+        icon: 'fa-gamepad'
       },
       {
-        id: 'papeletas-cv',
+        id: 'papeletas-automaticas',
         title: 'Papeletas Automáticas',
         category: 'ai-cloud',
-        featured: false,
-        icon: 'fa-camera',
-        repoUrl: 'https://github.com/Just-a-Spider/QR-Plates-Tickets',
-        subtitle: 'Computer Vision Vehicle License Recognition & Digital Ticketing',
-        shortDesc: 'Automated digital traffic ticket system with vehicle license plate detection and OCR text extraction using YOLOv5 and PyQt6.',
-        fullDesc: 'Engineered an automated traffic violation desktop tool combining YOLOv5 object detection with easyocr. Overcame GUI blocking during heavy inference by optimizing image preprocessing (ROI cropping and grayscale filtering) and manually pumping the PyQt6 event loop.',
-        techStack: ['Python', 'YOLOv5', 'PyQt6', 'easyocr', 'OpenCV'],
+        subtitle: 'Automated Digital Traffic Ticket & OCR System',
+        shortDesc: 'Computer vision proof of concept for license plate detection and automated traffic ticketing using Python, YOLOv5, and PyQt6.',
+        fullDesc: 'Developed a proof of concept for an automated digital traffic ticket system. Utilized YOLOv5 for vehicle and license plate bounding box detection, integrated EasyOCR for character recognition, and built a desktop operator interface with PyQt6.',
+        techStack: ['Python', 'YOLOv5', 'PyQt6', 'EasyOCR', 'OpenCV', 'SQLite'],
         metrics: [
-          'High-confidence license plate localization (>0.8 threshold)',
-          'Non-blocking continuous video feed integration in desktop GUI'
-        ]
+          'Integrated YOLOv5 object detection with EasyOCR optical character extraction',
+          'Desktop operator GUI built with PyQt6 and SQLite logging',
+          'Automated proof-of-concept pipeline for vehicle infraction capture'
+        ],
+        repoUrl: 'https://github.com/Just-a-Spider/papeletas_automaticas',
+        badge: 'Computer Vision POC',
+        featured: false,
+        icon: 'fa-camera'
       },
       {
-        id: 'ai-class-assistant',
+        id: 'ai-assistant-class',
         title: 'AI Assistant For Class',
         category: 'ai-cloud',
-        featured: false,
-        icon: 'fa-robot',
-        repoUrl: 'https://github.com/Just-a-Spider/AI_Assistant_For_Class',
-        subtitle: 'Desktop Voice Assistant & System Action Automation',
-        shortDesc: 'Local desktop virtual assistant automating operating system commands, browser actions, and speech-to-text queries with OpenAI models.',
-        fullDesc: 'Developed a responsive PyQt6 desktop application for natural language workflow automation. Offloaded audio capture and speech recognition to background Python worker threads, and bound global OS shortcuts via pynput to toggle recording seamlessly without freezing the interface.',
-        techStack: ['Python', 'PyQt6', 'OpenAI Whisper', 'pynput', 'Threading'],
+        subtitle: 'Desktop Speech Transcription & AI Assistant',
+        shortDesc: 'Local desktop productivity assistant with OpenAI Whisper integration and non-blocking audio capture built with PyQt6.',
+        fullDesc: 'Built a local desktop utility to capture lecture audio and provide AI-assisted summaries. Integrated OpenAI Whisper for speech transcription using multi-threaded PyQt6 workers to prevent UI lockups, with global hotkey support via pynput.',
+        techStack: ['Python', 'PyQt6', 'OpenAI API', 'Whisper', 'pynput', 'Threading'],
         metrics: [
-          'Zero UI freezing during long-running cloud transcription and model queries',
-          'Global keyboard shortcuts for instant voice recording across desktop environments'
-        ]
+          'Multi-threaded audio ingestion to keep the desktop interface responsive',
+          'OpenAI Whisper speech-to-text integration',
+          'Global keyboard hotkey shortcuts via pynput'
+        ],
+        repoUrl: 'https://github.com/Just-a-Spider/AI_Assistant_For_Class',
+        badge: 'Desktop Tool',
+        featured: false,
+        icon: 'fa-microphone'
       },
       {
         id: 'gatilin-digital',
-        title: 'Gatilín Digital',
+        title: 'Gatilín Digital POS & Billing',
         category: 'fullstack',
-        featured: false,
-        badge: 'Municipal Recognition',
-        icon: 'fa-map-marked-alt',
-        subtitle: 'Real-Time Festival Tracking & Cultural Documentation Portal',
-        shortDesc: 'Mobile-friendly tracking platform and historical documentation portal for traditional Cofradías during the Festival de Negritos 2024.',
-        fullDesc: 'Designed and deployed a public tracking portal and administrative platform for regional cultural heritage. Built using Django REST Framework and Angular 16 on PostgreSQL. Officially recognized by the District Municipality of Amarilis for technological contribution to local culture.',
-        techStack: ['Angular 16', 'Django REST Framework', 'PostgreSQL', 'Heroku', 'TailwindCSS'],
+        subtitle: 'Commercial Billing & Inventory Web Platform',
+        shortDesc: 'Award-winning web platform for inventory management and automated electronic billing using Django REST Framework and Angular.',
+        fullDesc: 'Engineered a web application for local commercial inventory tracking, electronic ticket generation, and automated PDF receipt generation. Built with Django REST Framework and Angular, deployed on Heroku with PostgreSQL.',
+        techStack: ['Django REST Framework', 'Angular 16', 'PostgreSQL', 'Heroku', 'TypeScript'],
         metrics: [
-          'Live tracking and schedule coordination during major regional festival',
-          'Official recognition diploma issued by the District Municipality of Amarilis'
-        ]
+          'Awarded 1st Place in Amarilis Municipal Innovation Competition',
+          'Electronic PDF ticket and receipt generation',
+          'Real-time inventory and sales tracking'
+        ],
+        badge: 'Municipal Award Winner',
+        featured: false,
+        icon: 'fa-cash-register'
       },
       {
         id: 'estructura-datos',
-        title: 'Estructura de Datos Compendium',
-        category: 'systems',
-        featured: false,
-        icon: 'fa-terminal',
-        subtitle: 'Algorithmic Platform & Sandboxed Code Execution Engine',
-        shortDesc: 'Interactive web platform with a secure backend sandbox that dynamically compiles and executes C++ and Python algorithms on-the-fly.',
-        fullDesc: 'Built an algorithmic compendium for university students with an integrated remote code execution view. Used g++ with subprocess and pexpect in Django to compile and run student algorithms interactively with strict timeouts and output capture.',
-        techStack: ['Django', 'PostgreSQL', 'C++ (g++)', 'Python', 'pexpect', 'subprocess'],
+        title: 'Estructura de Datos Platform',
+        category: 'fullstack',
+        subtitle: 'Academic Code Execution & Evaluation Platform',
+        shortDesc: 'Web platform for academic code evaluation with sandboxed C++ and Python execution environments built with Django.',
+        fullDesc: 'Developed a comprehensive web platform for computer science coursework. Included a custom code submission module with sandboxed container execution for C++ and Python scripts to automate grading and test-case verification.',
+        techStack: ['Django', 'PostgreSQL', 'Docker', 'Python', 'C++', 'Bootstrap'],
         metrics: [
-          'Interactive sandboxed compilation and execution of C++ and Python snippets',
-          'Dual-language algorithmic translation and data modeling'
-        ]
+          'Sandboxed execution environment for student code evaluation',
+          'Supports automated test-case evaluation for C++ and Python',
+          'Utilized across university algorithm coursework'
+        ],
+        badge: 'Academic Platform',
+        featured: false,
+        icon: 'fa-code-branch'
       }
     ],
     skillsList: [
       {
-        name: 'Backend & Cloud Systems',
+        name: 'Core Web & Backend',
         icon: 'fa-server',
         skills: [
-          { name: 'Django & DRF', level: 'Advanced', highlight: true },
-          { name: 'FastAPI (Python)', level: 'Advanced', highlight: true },
-          { name: 'PostgreSQL (pgvector / HNSW)', level: 'Advanced', highlight: true },
-          { name: 'Firebase Cloud Functions & Pub/Sub', level: 'Advanced', highlight: true },
-          { name: 'Docker & Google Cloud Run', level: 'Advanced', highlight: true },
-          { name: 'Hetzner Cloud & Linux Sysadmin', level: 'Intermediate' }
+          { name: 'Python (FastAPI, Django, DRF)', level: 'Advanced / Daily', highlight: true },
+          { name: 'Angular (Signals, TypeScript)', level: 'Advanced / Daily', highlight: true },
+          { name: 'PostgreSQL & Relational DBs', level: 'Intermediate / Daily', highlight: true },
+          { name: 'RESTful API Architecture', level: 'Intermediate / Daily', highlight: true },
+          { name: 'HTML5, CSS3 & TailwindCSS', level: 'Intermediate / Daily' }
         ]
       },
       {
-        name: 'Systems & Low-Level Programming',
+        name: 'Cloud, DevOps & Tools',
+        icon: 'fa-cloud',
+        skills: [
+          { name: 'Docker & Containerization', level: 'Intermediate', highlight: true },
+          { name: 'Google Cloud Run & GCP', level: 'Intermediate', highlight: true },
+          { name: 'Firebase (Pub/Sub, Functions)', level: 'Intermediate' },
+          { name: 'Linux Server Administration', level: 'Intermediate' },
+          { name: 'Git, GitHub & Version Control', level: 'Daily' }
+        ]
+      },
+      {
+        name: 'Systems & Technical Explorations',
         icon: 'fa-microchip',
         skills: [
-          { name: 'Rust (axum, tokio, evdev)', level: 'Intermediate', highlight: true },
-          { name: 'Linux OS (udev, systemd, RPM packaging)', level: 'Advanced', highlight: true },
-          { name: 'C / C++ (devkitARM, libctru)', level: 'Intermediate', highlight: true },
-          { name: 'D-Bus / MPRIS & Wayland Screencast', level: 'Intermediate' },
-          { name: 'WebSockets & TCP Protocols', level: 'Advanced' }
+          { name: 'Rust (axum, tokio, uinput)', level: 'Personal Projects', highlight: true },
+          { name: 'C & Embedded / devkitARM', level: 'Personal Projects' },
+          { name: 'Linux Kernel Input (/dev/uinput)', level: 'Personal Projects' },
+          { name: 'TCP Socket Networking', level: 'Personal Projects' }
         ]
       },
       {
-        name: 'Frontend & Reactive UI',
-        icon: 'fa-code',
+        name: 'Applied AI & Practical Tools',
+        icon: 'fa-robot',
         skills: [
-          { name: 'Angular (Signals, v16-v19)', level: 'Advanced', highlight: true },
-          { name: 'TypeScript & Modern JavaScript', level: 'Advanced', highlight: true },
-          { name: 'PrimeNG & TailwindCSS', level: 'Advanced', highlight: true },
-          { name: 'HTML5 & Modern CSS3', level: 'Advanced' },
-          { name: 'PyQt6 Desktop Applications', level: 'Advanced' }
-        ]
-      },
-      {
-        name: 'AI, LLMs & Computer Vision',
-        icon: 'fa-brain',
-        skills: [
-          { name: 'RAG & Vector Semantic Search', level: 'Advanced', highlight: true },
-          { name: 'Gemini API & LLM Integrations', level: 'Advanced', highlight: true },
-          { name: 'Ollama & Local Model Workflows', level: 'Advanced', highlight: true },
-          { name: 'YOLOv5 Computer Vision & OCR', level: 'Intermediate' }
+          { name: 'OpenAI API & Local Whisper', level: 'Practical / Tooling', highlight: true },
+          { name: 'pgvector & RAG Concepts', level: 'Staging / Research' },
+          { name: 'Computer Vision (YOLOv5, OpenCV)', level: 'Foundational / POC' },
+          { name: 'PyQt6 Desktop Tooling', level: 'Intermediate' }
         ]
       }
     ],
     experiencesList: [
       {
-        role: 'Full-Stack Developer & Technical Lead',
-        company: 'Kuantum Innovations',
+        role: 'Full-Stack Developer',
+        company: 'Kuantum Innovation',
         period: 'Feb 2025 – Jun 2026',
-        location: 'Peru (Remote)',
+        location: 'Huánuco, Peru (Remote)',
         highlights: [
-          'Sole technical resource responsible for architecture, development, and deployment of Kuantum Educa platform from scratch.',
-          'Designed scalable asynchronous result processing with Firebase Cloud Functions and Pub/Sub, guaranteeing zero UI latency under peak loads.',
-          'Engineered dedicated FastAPI microservice on Google Cloud Run with PostgreSQL (pgvector) for secure payments and semantic RAG matching across 200+ academic programs.',
-          'Built administrative analytics dashboard using Angular 19 Signals and PrimeNG for reactive real-time state management.'
+          'Sole architect and developer of Kuantum Educa from scratch, designing the complete data schema and API contracts.',
+          'Built an event-driven backend using Firebase Cloud Functions and Pub/Sub to asynchronously process thousands of concurrent simulation attempts without blocking the user interface.',
+          'Developed and deployed a dedicated FastAPI microservice containerized with Docker on Google Cloud Run to handle transaction records and student operations with PostgreSQL.',
+          'Prototyped and tested a career-matching module using PostgreSQL pgvector in staging environments.',
+          'Created the responsive administrative web dashboard using Angular 19 with Signals for reactive state management and PrimeNG data charts.'
         ],
-        stack: ['Angular 19', 'FastAPI', 'Firebase Functions', 'Pub/Sub', 'PostgreSQL (pgvector)', 'Google Cloud Run', 'Docker']
+        stack: ['Angular 19', 'Signals', 'FastAPI', 'Python', 'Firebase Pub/Sub', 'PostgreSQL', 'Docker', 'Cloud Run']
       },
       {
-        role: 'Full-Stack Developer & Infrastructure Admin',
+        role: 'Full-Stack Developer & Cloud Admin',
         company: 'E-learning Platform "Comienza Pro"',
         period: 'Aug 2025 – Nov 2025',
-        location: 'Peru (Remote)',
+        location: 'Huánuco, Peru (Remote)',
         highlights: [
-          'Provisioned, configured, and maintained Moodle e-learning infrastructure on Hetzner Cloud for 9 specialized courses.',
-          'Customized web services, optimized database performance, and maintained 99.9% uptime for active students.'
+          'Managed end-to-end server provisioning, Linux configuration, and continuous maintenance in the Hetzner cloud infrastructure.',
+          'Customized and administered the e-learning platform to support 9 specialized courses with an intuitive user experience.'
         ],
-        stack: ['Hetzner Cloud', 'Moodle', 'PHP', 'MySQL', 'Linux', 'Apache']
+        stack: ['Linux', 'Hetzner Cloud', 'Moodle', 'PHP', 'MySQL', 'Nginx']
       }
     ],
     recognitionsList: [
-      { title: '1st Place — Programming Contest', entity: 'Universidad de Huánuco', date: 'Nov 2023', icon: 'fa-trophy' },
-      { title: '1st Place — Pitch Day Innovation Contest', entity: 'Universidad de Huánuco', date: 'Nov 2023', icon: 'fa-award' },
-      { title: 'Official Recognition for Gatilín Digital', entity: 'District Municipality of Amarilis', date: 'Feb 2024', icon: 'fa-certificate' }
+      {
+        title: '1st Place — Inter-University Programming Contest (ACM Format)',
+        entity: 'Universidad Nacional Hermilio Valdizán (UNHEVAL)',
+        date: '2023',
+        icon: 'fa-trophy'
+      },
+      {
+        title: '1st Place — Innovation & Business Pitch Day',
+        entity: 'Universidad de Huánuco (UDH)',
+        date: '2024',
+        icon: 'fa-medal'
+      },
+      {
+        title: 'Municipal Recognition for Digital Innovation',
+        entity: 'Municipalidad Distrital de Amarilis',
+        date: '2023',
+        icon: 'fa-award'
+      }
     ]
   },
   es: {
     nav: {
       overview: 'Inicio',
-      projects: 'Sistemas y Proyectos',
-      skills: 'Habilidades Técnicas',
+      about: 'Sobre mí',
+      projects: 'Proyectos',
+      skills: 'Habilidades',
       experience: 'Experiencia',
       contact: 'Contacto',
-      downloadCv: 'Currículum (PDF)'
+      downloadCv: 'CV (PDF)'
     },
     hero: {
-      badge: 'Ingeniero de Sistemas y Full-Stack · 1.5+ Años Exp. · 10mo Ciclo UDH',
-      titleMain: 'Construyendo Sistemas',
-      titleHighlight: 'Orientados a Eventos',
-      titleSuffix: 'y Herramientas de Bajo Nivel',
-      subtitle: 'Estudiante de último año de Ingeniería de Sistemas con más de 1.5 años de experiencia profesional diseñando plataformas web altamente disponibles, pipelines en la nube orientados a eventos y herramientas de sistemas en Rust.',
+      badge: 'DISPONIBLE PARA TRABAJAR · DESARROLLADOR FULL-STACK JUNIOR',
+      titleMain: 'Construyendo Aplicaciones',
+      titleHighlight: 'Web Full-Stack Confiables',
+      titleSuffix: 'y Backends Escalables',
+      subtitle: 'Desarrollador Full-Stack Junior con más de 1.5 años de experiencia práctica creando aplicaciones web reactivas con Angular, APIs REST robustas con Python (FastAPI, Django) y bases de datos PostgreSQL. Estudiante de 10mo ciclo en Ingeniería de Sistemas en la Universidad de Huánuco (Tercio Superior).',
       viewProjectsBtn: 'Ver Proyectos',
-      downloadCvBtn: 'Descargar CV',
+      downloadCvBtn: 'Descargar CV (PDF)',
       copyEmailBtn: 'Copiar Correo',
       copiedToast: '¡Correo copiado al portapapeles!'
     },
+    about: {
+      tag: 'SOBRE MÍ',
+      title: 'Perfil Profesional y Fortalezas Técnicas',
+      subtitle: 'Un enfoque pragmático del desarrollo de software centrado en arquitecturas limpias, código mantenible y rápida adaptabilidad técnica.',
+      pillars: [
+        {
+          icon: 'fa-layer-group',
+          title: 'Desarrollo Web Full-Stack',
+          desc: 'Desarrollo de aplicaciones web de extremo a extremo: diseño de APIs REST modulares con FastAPI y Django, integradas con frontends modernos y reactivos en Angular (Signals) y TypeScript.'
+        },
+        {
+          icon: 'fa-cloud',
+          title: 'Bases de Datos y Fundamentos Cloud',
+          desc: 'Experiencia práctica estructurando esquemas en PostgreSQL, contenerizando servicios con Docker, desplegando en Google Cloud Run y procesando tareas asíncronas con Firebase Pub/Sub.'
+        },
+        {
+          icon: 'fa-brain',
+          title: 'Rápido Aprendizaje y Resolución de Problemas',
+          desc: 'Capacidad demostrada para dominar nuevos frameworks, librerías y protocolos de forma autodidacta. 1er puesto en concursos interuniversitarios de programación competitiva (estilo ACM).'
+        },
+        {
+          icon: 'fa-users-cog',
+          title: 'Responsabilidad y Rigor Técnico',
+          desc: 'Compromiso total desde la toma de requerimientos hasta el despliegue y pruebas. Gran curiosidad por el funcionamiento interno de sistemas operativos, redes y computación de bajo nivel.'
+        }
+      ]
+    },
     projects: {
       tag: 'PORTAFOLIO',
-      title: 'Sistemas Destacados y Proyectos de Ingeniería',
-      subtitle: 'Plataformas en producción, utilidades de sistemas y herramientas con IA con impacto técnico medible.',
-      all: 'Todos los Sistemas',
-      fullstack: 'Full-Stack y Nube',
-      systems: 'Sistemas y Rust',
+      title: 'Proyectos y Sistemas Destacados',
+      subtitle: 'Plataformas web en producción, exploraciones de sistemas de bajo nivel y herramientas de automatización.',
+      all: 'Todos',
+      fullstack: 'Full-Stack y Web',
+      systems: 'Sistemas y Herramientas',
       aiCloud: 'IA y Automatización',
-      featuredBadge: 'Sistema Destacado',
-      viewArch: 'Arquitectura y Detalles',
-      liveDemo: 'Plataforma en Vivo',
+      featuredBadge: 'Proyecto Destacado',
+      viewArch: 'Ver Detalles',
+      liveDemo: 'Ver en Vivo',
       repo: 'Código Fuente',
-      keyHighlights: 'Puntos Clave de Ingeniería:'
+      keyHighlights: 'Aspectos Técnicos Clave'
     },
     skills: {
-      tag: 'CAPACIDADES',
-      title: 'Dominios Técnicos y Stack',
-      subtitle: 'Competencias en arquitectura en la nube, backend, programación de sistemas de bajo nivel e interfaces reactivas.'
+      tag: 'HABILIDADES TÉCNICAS',
+      title: 'Stack Tecnológico y Competencias',
+      subtitle: 'Habilidades técnicas fundamentadas en desarrollo web moderno, servicios en la nube y herramientas de ingeniería.',
     },
     experience: {
       tag: 'TRAYECTORIA',
-      title: 'Experiencia Profesional',
-      subtitle: 'Desarrollo de software y operaciones en la nube entregando aplicaciones de misión crítica.',
-      honorsTitle: 'Reconocimientos Académicos e Institucionales',
+      title: 'Experiencia Laboral y Educación',
+      subtitle: 'Más de 1.5 años de experiencia práctica en desarrollo de software y constante excelencia académica.',
+      honorsTitle: 'Logros y Reconocimientos',
       educationTitle: 'Educación',
-      educationDegree: 'Ingeniería de Sistemas e Informática (10mo ciclo, tercio superior)',
-      educationSchool: 'Universidad de Huánuco, Perú',
-      educationPeriod: '2021 – Presente (Graduación Dic 2026)',
-      educationHonors: '3 veces 1er puesto del ciclo académico'
+      educationDegree: 'Bachiller en Ingeniería de Sistemas e Informática',
+      educationSchool: 'Universidad de Huánuco (UDH) · Huánuco, Perú',
+      educationPeriod: '2021 – Dic 2026 (10mo Ciclo / Egresando)',
+      educationHonors: 'Mérito Académico (Tercio Superior)'
     },
     contact: {
       tag: 'CONTACTO',
-      title: 'Construyamos algo extraordinario.',
-      desc: 'Disponible para roles remotos a tiempo completo (LATAM/Américas) y posiciones híbridas o presenciales en Lima, Perú. Conversemos sobre arquitectura backend, ingeniería de sistemas o desarrollo full-stack.',
+      title: 'Construyamos Algo Juntos',
+      desc: 'Disponible para roles de Desarrollador Full-Stack Junior, Desarrollador Backend o Ingeniero Web (Remoto en América/Global o Híbrido en Perú).',
       emailLabel: 'Correo Directo',
-      locationLabel: 'Ubicación',
+      locationLabel: 'Ubicación y Zona Horaria',
       availabilityLabel: 'Disponibilidad',
-      availabilityValue: 'Inmediata · Horario flexible mañana/asíncrono hasta graduación',
-      copyEmail: 'Copiar Correo Electrónico',
+      availabilityValue: 'Abierto a Oportunidades (Inmediata)',
+      targetRolesLabel: 'Roles de Interés',
+      targetRolesValue: 'Desarrollador Full-Stack / Backend / Web Junior',
+      copyEmail: 'Copiar Correo',
       sendEmail: 'Enviar Correo'
     },
     modal: {
-      architectureTitle: 'Arquitectura del Sistema y Flujo de Datos',
-      keyDecisions: 'Decisiones Clave de Arquitectura',
-      techStack: 'Stack Tecnológico e Infraestructura',
-      metrics: 'Impacto Cuantificable y Métricas',
+      architectureTitle: 'Visión Técnica y Arquitectura',
+      keyDecisions: 'Decisiones de Ingeniería Clave',
+      techStack: 'Tecnologías Utilizadas',
+      metrics: 'Resultados y Métricas',
       repo: 'Ver Repositorio',
-      liveDemo: 'Visitar Plataforma en Vivo',
-      close: 'Cerrar Ventana'
+      liveDemo: 'Visitar Proyecto',
+      close: 'Cerrar'
     },
     projectsList: [
       {
         id: 'kuantum-educa',
         title: 'Plataforma Kuantum Educa',
         category: 'fullstack',
-        featured: true,
-        badge: 'Sistema Full-Stack Insignia',
-        icon: 'fa-graduation-cap',
-        liveUrl: 'https://kuantumeduca.com',
-        subtitle: 'Plataforma de Simulaciones Orientada a Eventos y Motor RAG Semántico',
-        shortDesc: 'Único arquitecto y desarrollador de una plataforma educativa que procesa miles de simulacros simultáneos con cero latencia de interfaz y orientación vocacional con IA.',
-        fullDesc: 'Diseñé e implementé una plataforma integral desde cero. Creé un pipeline asíncrono con Firebase Cloud Functions y Google Cloud Pub/Sub que delega la agregación pesada de datos en workers transaccionales atómicos. Implementé un microservicio con FastAPI (Python) contenerizado con Docker en Google Cloud Run para procesar pagos y búsqueda semántica RAG con PostgreSQL (pgvector/HNSW). Desarrollé la interfaz en Angular 19 utilizando Signals nativos y PrimeNG para tableros administrativos.',
-        techStack: ['Angular 19 (Signals)', 'FastAPI (Python)', 'Firebase Cloud Functions', 'Google Cloud Pub/Sub', 'PostgreSQL (pgvector)', 'Docker', 'Google Cloud Run', 'Gemini 3.1 Flash-Lite', 'PrimeNG', 'TailwindCSS'],
+        subtitle: 'Plataforma Web de Simulaciones y Preparación de Exámenes',
+        shortDesc: 'Plataforma web en producción construida con Angular 19, microservicios FastAPI en Google Cloud Run y Firebase Pub/Sub para procesamiento asíncrono.',
+        fullDesc: 'Único arquitecto y desarrollador de Kuantum Educa desde cero. Diseñé un sistema desacoplado donde los envíos de exámenes se encolan mediante Firebase Pub/Sub para procesamiento asíncrono durante picos de tráfico. Desarrollé un backend contenerizado en FastAPI desplegado en Google Cloud Run para transacciones y usuarios en PostgreSQL. Diseñé y probé un módulo de orientación vocacional semántico con PostgreSQL pgvector en entornos locales y de staging.',
+        techStack: ['Angular 19', 'Signals', 'FastAPI (Python)', 'Firebase Pub/Sub', 'PostgreSQL (pgvector)', 'Docker', 'Google Cloud Run', 'PrimeNG'],
         metrics: [
-          'Procesamiento masivo de evaluaciones simultáneas durante picos de simulacros sin caídas de servicio',
-          'Pipeline RAG indexando más de 200 programas académicos y 105 universidades licenciadas por SUNEDU',
-          'Desacoplamiento de pagos e inferencia en Google Cloud Run con cero cold starts mediante CPU throttling'
+          'Procesamiento asíncrono de simulaciones mediante Firebase Pub/Sub',
+          'Microservicio FastAPI contenerizado con Docker en Google Cloud Run',
+          'Pipeline de emparejamiento vocacional con pgvector probado en staging',
+          'Panel administrativo reactivo desarrollado con Angular 19 Signals y PrimeNG'
         ],
+        liveUrl: 'https://kuantum.pe',
+        badge: 'Plataforma Web Principal',
+        featured: true,
+        icon: 'fa-graduation-cap',
         architectureDetails: {
           flow: [
-            'Cliente (Angular 19) envía simulación completada mediante trigger ligero HTTPS',
-            'Cloud Function ligera guarda intento y marca el documento como pendiente',
-            'Cron job despacha mensajes a temas de Google Cloud Pub/Sub por lote de simulaciones',
-            'Worker Pub/Sub de instancia única procesa lotes en una transacción atómica única',
-            'Microservicio FastAPI consulta índice HNSW en pgvector para emparejamiento vocacional RAG'
+            'El estudiante completa su simulación de examen en el frontend Angular 19',
+            'La carga útil se envía a la cola asíncrona de Firebase Pub/Sub',
+            'Workers en Cloud Functions agregan puntajes y percentiles sin bloquear la UI',
+            'Microservicio FastAPI en Cloud Run gestiona transacciones y almacenamiento en PostgreSQL',
+            'Panel administrativo muestra métricas en tiempo real con paginación en servidor'
           ],
           keyDecisions: [
-            'Desacoplamiento de analítica pesada de las rutas críticas de usuario para garantizar respuesta instantánea',
-            'Uso de Angular Signals en lugar de suscripciones RxJS para actualizaciones sincrónicas y limpias del DOM',
-            'Flujo de inferencia híbrido (Ollama local para desarrollo/staging, Gemini Flash en producción) ahorrando 100% de costos de API en desarrollo'
+            'La ingesta asíncrona vía Pub/Sub previene bloqueos de UI durante exámenes concurrentes',
+            'FastAPI + Cloud Run minimiza costos operativos con autoescalado rápido',
+            'Angular Signals permite reactividad precisa con mínimo costo de detección de cambios',
+            'Emparejamiento vocacional validado con embeddings en PostgreSQL pgvector en staging'
           ]
         }
       },
       {
         id: 'sysmon-3ds',
-        title: 'SysMon — Acompañante de Sistemas para 3DS',
+        title: 'SysMon — Monitor y Macro Pad 3DS',
         category: 'systems',
-        featured: true,
-        badge: 'Sistema Homebrew en Rust y C',
-        icon: 'fa-gamepad',
-        repoUrl: 'https://github.com/Just-a-Spider/SysMon',
-        subtitle: 'Monitor Inalámbrico de Telemetría de PC y Panel de Macros a Nivel Kernel',
-        shortDesc: 'Convierte una consola Nintendo 3DS en un monitor de telemetría de PC en tiempo real, gestor de procesos pesados y panel de macros táctiles para Linux sobre Wi-Fi.',
-        fullDesc: 'Desarrollé un proyecto de sistemas compuesto por un servidor asíncrono en Rust y un cliente embebido en C para homebrew de Nintendo 3DS. El demonio en Rust utiliza axum y tokio para APIs ligeras, sysinfo para telemetría de hardware en tiempo real (temperaturas CPU/GPU, RAM, ventiladores), y el subsistema evdev/uinput de Linux para instanciar un teclado virtual a nivel kernel. Empaquetado como RPM nativo con reglas udev. El cliente en C fue compilado con devkitARM y libctru, con parsing manual de buffers.',
-        techStack: ['Rust (axum, tokio, evdev)', 'C (devkitARM, libctru)', 'Linux (RPM, udev, systemd)', 'D-Bus / MPRIS', 'Wayland Screencast (ashpd)', 'WebSockets / HTTP'],
+        subtitle: 'Telemetría de PC y Macro Pad Táctil mediante 3DS',
+        shortDesc: 'Proyecto personal de sistemas que convierte una Nintendo 3DS en un monitor secundario de hardware y macro pad sobre Wi-Fi usando Rust (Tokio) y C.',
+        fullDesc: 'Proyecto personal desarrollado para profundizar en programación de bajo nivel, redes y controladores de Linux. Desarrollé un servidor multi-hilo en Rust con Tokio para consultar estadísticas del sistema y virtualizar entradas mediante /dev/uinput. Escribí un cliente ligero en C para la 3DS usando devkitARM con parsing de paquetes TCP sin asignación dinámica en heap.',
+        techStack: ['Rust 2024', 'Tokio', 'C (devkitARM)', 'evdev / uinput', 'sysinfo', 'Linux RPM'],
         metrics: [
-          'Transmisión de telemetría y ejecución de macros con latencia inferior a 1ms sobre Wi-Fi',
-          'Dispositivo virtual de entrada a nivel kernel evitando restricciones de Wayland en eventos sintéticos',
-          'Paquete RPM de producción instalable en Linux y binario .cia ejecutable en hardware real de 3DS'
+          'Tiempo de respuesta en red local sub-milisegundo (<1ms)',
+          'Parsing de paquetes en C sin asignaciones en heap (libctru)',
+          'Virtualización de entradas en kernel Linux vía /dev/uinput y evdev',
+          'Empaquetado nativo como paquete RPM para Fedora/RHEL'
         ],
-        architectureDetails: {
-          flow: [
-            'Demonio en Rust se ejecuta en bandeja del sistema Linux leyendo telemetría vía sysinfo y D-Bus',
-            'Cliente 3DS establece conexión TCP/HTTP autenticada con PIN al puerto del servidor',
-            'Servidor transmite métricas en vivo y lista de procesos pesados a la pantalla superior',
-            'Usuario presiona una pestaña de macro en la pantalla táctil inferior -> envía paquete por Wi-Fi',
-            'Servidor en Rust escribe eventos de entrada en el dispositivo virtual /dev/uinput o ejecuta comandos shell'
-          ],
-          keyDecisions: [
-            'Parsing manual de buffers (strstr/sscanf) en 3DS para eliminar sobrecarga de memoria de librerías JSON',
-            'Dispositivo virtual de kernel con reglas udev para garantizar compatibilidad con compositores Wayland modernos',
-            'Dashboard web local con autenticación por PIN para configuración segura desde el localhost de la PC'
-          ]
-        }
+        repoUrl: 'https://github.com/Just-a-Spider/SysMon',
+        badge: 'Proyecto Personal de Sistemas',
+        featured: true,
+        icon: 'fa-gamepad'
       },
       {
-        id: 'papeletas-cv',
+        id: 'papeletas-automaticas',
         title: 'Papeletas Automáticas',
         category: 'ai-cloud',
-        featured: false,
-        icon: 'fa-camera',
-        repoUrl: 'https://github.com/Just-a-Spider/QR-Plates-Tickets',
-        subtitle: 'Reconocimiento de Placas Vehiculares con Visión Computacional',
-        shortDesc: 'Sistema automatizado de infracciones de tránsito con detección de placas vehiculares y extracción OCR utilizando YOLOv5 y PyQt6.',
-        fullDesc: 'Desarrollé una aplicación de escritorio combinando detección de objetos YOLOv5 con easyocr. Evité bloqueos de la interfaz gráfica optimizando el preprocesamiento de imágenes (recorte de ROI y escala de grises) y procesando continuamente el bucle de eventos de PyQt6.',
-        techStack: ['Python', 'YOLOv5', 'PyQt6', 'easyocr', 'OpenCV'],
+        subtitle: 'Sistema de Multas Digitales con Detección y OCR',
+        shortDesc: 'Prueba de concepto de visión computacional para detección de placas vehiculares y gestión de multas usando Python, YOLOv5 y PyQt6.',
+        fullDesc: 'Desarrollé una prueba de concepto para un sistema automatizado de infracciones de tránsito. Utilicé YOLOv5 para detección de vehículos y matrículas, integré EasyOCR para reconocimiento óptico de caracteres y construí una interfaz de escritorio con PyQt6.',
+        techStack: ['Python', 'YOLOv5', 'PyQt6', 'EasyOCR', 'OpenCV', 'SQLite'],
         metrics: [
-          'Detección de placas vehiculares de alta confianza (umbral >0.8)',
-          'Integración fluida con transmisión de video continuo sin congelar la UI'
-        ]
+          'Integración de YOLOv5 para detección de objetos con EasyOCR',
+          'Interfaz gráfica para operadores en PyQt6 con registro en SQLite',
+          'Pipeline automatizado para captura de infracciones vehiculares'
+        ],
+        repoUrl: 'https://github.com/Just-a-Spider/papeletas_automaticas',
+        badge: 'POC de Visión Computacional',
+        featured: false,
+        icon: 'fa-camera'
       },
       {
-        id: 'ai-class-assistant',
-        title: 'Asistente de IA Local',
+        id: 'ai-assistant-class',
+        title: 'AI Assistant For Class',
         category: 'ai-cloud',
-        featured: false,
-        icon: 'fa-robot',
-        repoUrl: 'https://github.com/Just-a-Spider/AI_Assistant_For_Class',
-        subtitle: 'Asistente de Voz de Escritorio y Automatización de Acciones del Sistema',
-        shortDesc: 'Asistente virtual de escritorio para automatizar comandos del sistema operativo, navegación web y transcripción de voz con modelos de OpenAI.',
-        fullDesc: 'Desarrollé una aplicación en PyQt6 para automatización de flujos de trabajo en lenguaje natural. Delegué la captura de audio y transcripción en hilos de trabajo en segundo plano, e integré atajos de teclado globales con pynput para alternar la grabación sin congelar la interfaz.',
-        techStack: ['Python', 'PyQt6', 'OpenAI Whisper', 'pynput', 'Threading'],
+        subtitle: 'Asistente de Escritorio para Transcripción de Audio',
+        shortDesc: 'Herramienta de escritorio local con transcripción Whisper e ingesta de audio en segundo plano construida con PyQt6.',
+        fullDesc: 'Construí una utilidad de escritorio para capturar audio de clases y generar resúmenes con IA. Integré Whisper de OpenAI para transcripción mediante hilos secundarios en PyQt6 para evitar bloqueos en la interfaz gráfica, con atajos de teclado globales mediante pynput.',
+        techStack: ['Python', 'PyQt6', 'OpenAI API', 'Whisper', 'pynput', 'Threading'],
         metrics: [
-          'Cero bloqueos de interfaz durante transcripciones en la nube y consultas a modelos',
-          'Atajos globales de teclado para grabación instantánea de voz en todo el entorno de escritorio'
-        ]
+          'Ingesta de audio multi-hilo para mantener la interfaz de escritorio fluida',
+          'Integración de transcripción de voz con OpenAI Whisper',
+          'Atajos de teclado globales con pynput'
+        ],
+        repoUrl: 'https://github.com/Just-a-Spider/AI_Assistant_For_Class',
+        badge: 'Herramienta de Escritorio',
+        featured: false,
+        icon: 'fa-microphone'
       },
       {
         id: 'gatilin-digital',
-        title: 'Gatilín Digital',
+        title: 'Gatilín Digital — POS y Facturación',
         category: 'fullstack',
-        featured: false,
-        badge: 'Reconocimiento Municipal',
-        icon: 'fa-map-marked-alt',
-        subtitle: 'Portal de Seguimiento de Cofradías y Documentación Cultural',
-        shortDesc: 'Plataforma móvil y portal histórico para seguimiento de cofradías durante el Festival de Negritos de Huánuco 2024.',
-        fullDesc: 'Diseñé e implementé un portal público de seguimiento y gestión para el patrimonio cultural regional. Construido con Django REST Framework y Angular 16 sobre PostgreSQL. Reconocimiento oficial otorgado por la Municipalidad Distrital de Amarilis.',
-        techStack: ['Angular 16', 'Django REST Framework', 'PostgreSQL', 'Heroku', 'TailwindCSS'],
+        subtitle: 'Plataforma Web de Facturación e Inventario',
+        shortDesc: 'Plataforma web galardonada para gestión de inventario y facturación electrónica construida con Django REST Framework y Angular.',
+        fullDesc: 'Desarrollé una aplicación web para el seguimiento de inventarios comerciales, emisión de comprobantes y generación automatizada de boletas en PDF. Construida con Django REST Framework y Angular, desplegada en Heroku con PostgreSQL.',
+        techStack: ['Django REST Framework', 'Angular 16', 'PostgreSQL', 'Heroku', 'TypeScript'],
         metrics: [
-          'Seguimiento en vivo y coordinación de recorridos durante la festividad regional',
-          'Diploma de reconocimiento oficial emitido por la Municipalidad Distrital de Amarilis'
-        ]
+          'Ganador del 1er Puesto en el Concurso de Innovación Municipal de Amarilis',
+          'Generación automatizada de boletas y reportes en PDF',
+          'Control de inventario y registro de ventas en tiempo real'
+        ],
+        badge: 'Premio Municipal de Innovación',
+        featured: false,
+        icon: 'fa-cash-register'
       },
       {
         id: 'estructura-datos',
-        title: 'Compendio de Estructura de Datos',
-        category: 'systems',
-        featured: false,
-        icon: 'fa-terminal',
-        subtitle: 'Plataforma Algorítmica y Motor de Ejecución de Código en Sandbox',
-        shortDesc: 'Plataforma web con sandbox en el backend para compilar y ejecutar algoritmos en C++ y Python de forma interactiva y segura.',
-        fullDesc: 'Construí un compendio interactivo para estudiantes universitarios con entorno de ejecución remota segura. Utilicé g++ con subprocess y pexpect en Django para compilar y ejecutar algoritmos con límites de tiempo y captura de salidas.',
-        techStack: ['Django', 'PostgreSQL', 'C++ (g++)', 'Python', 'pexpect', 'subprocess'],
+        title: 'Plataforma de Estructura de Datos',
+        category: 'fullstack',
+        subtitle: 'Plataforma de Evaluación y Ejecución de Código',
+        shortDesc: 'Plataforma web para evaluación académica de código con entornos seguros en contenedores para C++ y Python desarrollada en Django.',
+        fullDesc: 'Desarrollé una plataforma web para cursos de ciencias de la computación. Incluyó un módulo de envío de código con ejecución aislada en contenedores para scripts en C++ y Python, permitiendo calificar automáticamente casos de prueba.',
+        techStack: ['Django', 'PostgreSQL', 'Docker', 'Python', 'C++', 'Bootstrap'],
         metrics: [
-          'Compilación y ejecución interactiva de algoritmos en C++ y Python en un entorno controlado',
-          'Traducción algorítmica dual y modelado de datos escalable'
-        ]
+          'Entorno de ejecución aislado para evaluación de código de estudiantes',
+          'Soporte para pruebas automatizadas en C++ y Python',
+          'Utilizado en cursos universitarios de algoritmos'
+        ],
+        badge: 'Plataforma Académica',
+        featured: false,
+        icon: 'fa-code-branch'
       }
     ],
     skillsList: [
       {
-        name: 'Sistemas Backend y Nube',
+        name: 'Desarrollo Web y Backend',
         icon: 'fa-server',
         skills: [
-          { name: 'Django & DRF', level: 'Avanzado', highlight: true },
-          { name: 'FastAPI (Python)', level: 'Avanzado', highlight: true },
-          { name: 'PostgreSQL (pgvector / HNSW)', level: 'Avanzado', highlight: true },
-          { name: 'Firebase Cloud Functions & Pub/Sub', level: 'Avanzado', highlight: true },
-          { name: 'Docker & Google Cloud Run', level: 'Avanzado', highlight: true },
-          { name: 'Hetzner Cloud y Sysadmin Linux', level: 'Intermedio' }
+          { name: 'Python (FastAPI, Django, DRF)', level: 'Avanzado / Diario', highlight: true },
+          { name: 'Angular (Signals, TypeScript)', level: 'Avanzado / Diario', highlight: true },
+          { name: 'PostgreSQL y Bases Relacionales', level: 'Intermedio / Diario', highlight: true },
+          { name: 'Diseño de APIs RESTful', level: 'Intermedio / Diario', highlight: true },
+          { name: 'HTML5, CSS3 y TailwindCSS', level: 'Intermedio / Diario' }
         ]
       },
       {
-        name: 'Programación de Sistemas y Bajo Nivel',
+        name: 'Nube, DevOps y Herramientas',
+        icon: 'fa-cloud',
+        skills: [
+          { name: 'Docker y Contenerización', level: 'Intermedio', highlight: true },
+          { name: 'Google Cloud Run y GCP', level: 'Intermedio', highlight: true },
+          { name: 'Firebase (Pub/Sub, Functions)', level: 'Intermedio' },
+          { name: 'Administración de Servidores Linux', level: 'Intermedio' },
+          { name: 'Git, GitHub y Control de Versiones', level: 'Diario' }
+        ]
+      },
+      {
+        name: 'Sistemas y Exploraciones Técnicas',
         icon: 'fa-microchip',
         skills: [
-          { name: 'Rust (axum, tokio, evdev)', level: 'Intermedio', highlight: true },
-          { name: 'Linux OS (udev, systemd, empaquetado RPM)', level: 'Avanzado', highlight: true },
-          { name: 'C / C++ (devkitARM, libctru)', level: 'Intermedio', highlight: true },
-          { name: 'D-Bus / MPRIS y Wayland Screencast', level: 'Intermedio' },
-          { name: 'WebSockets y Protocolos TCP', level: 'Avanzado' }
+          { name: 'Rust (axum, tokio, uinput)', level: 'Proyectos Personales', highlight: true },
+          { name: 'C y Embebidos / devkitARM', level: 'Proyectos Personales' },
+          { name: 'Controladores de Entrada Linux (/dev/uinput)', level: 'Proyectos Personales' },
+          { name: 'Redes y Sockets TCP', level: 'Proyectos Personales' }
         ]
       },
       {
-        name: 'Frontend e Interfaces Reactivas',
-        icon: 'fa-code',
+        name: 'IA Aplicada y Herramientas Prácticas',
+        icon: 'fa-robot',
         skills: [
-          { name: 'Angular (Signals, v16-v19)', level: 'Avanzado', highlight: true },
-          { name: 'TypeScript y JavaScript Moderno', level: 'Avanzado', highlight: true },
-          { name: 'PrimeNG y TailwindCSS', level: 'Avanzado', highlight: true },
-          { name: 'HTML5 y CSS3 Moderno', level: 'Avanzado' },
-          { name: 'Aplicaciones de Escritorio PyQt6', level: 'Avanzado' }
-        ]
-      },
-      {
-        name: 'IA, Modelos de Lenguaje y Visión',
-        icon: 'fa-brain',
-        skills: [
-          { name: 'RAG y Búsqueda Semántica Vectorial', level: 'Avanzado', highlight: true },
-          { name: 'API de Gemini e Integración de LLMs', level: 'Avanzado', highlight: true },
-          { name: 'Ollama y Flujos con Modelos Locales', level: 'Avanzado', highlight: true },
-          { name: 'Visión Computacional YOLOv5 y OCR', level: 'Intermedio' }
+          { name: 'API de OpenAI y Whisper Local', level: 'Práctico / Herramientas', highlight: true },
+          { name: 'pgvector y Conceptos RAG', level: 'Staging / Investigación' },
+          { name: 'Visión Computacional (YOLOv5, OpenCV)', level: 'Fundamentos / POC' },
+          { name: 'Herramientas de Escritorio PyQt6', level: 'Intermedio' }
         ]
       }
     ],
     experiencesList: [
       {
-        role: 'Desarrollador Full-Stack y Líder Técnico',
-        company: 'Kuantum Innovations',
+        role: 'Desarrollador Full-Stack',
+        company: 'Kuantum Innovation',
         period: 'Feb 2025 – Jun 2026',
-        location: 'Perú (Remoto)',
+        location: 'Huánuco, Perú (Remoto)',
         highlights: [
-          'Único recurso técnico responsable de la arquitectura, desarrollo y despliegue de la plataforma Kuantum Educa desde cero.',
-          'Diseñé un procesamiento asíncrono y escalable con Firebase Cloud Functions y Pub/Sub, garantizando cero latencia en interfaz durante picos de simulacros.',
-          'Implementé microservicio en FastAPI sobre Google Cloud Run con PostgreSQL (pgvector) para pagos seguros y RAG semántico conectando más de 200 programas académicos.',
-          'Desarrollé panel administrativo reactivo con Angular 19 Signals y PrimeNG para gestión en tiempo real.'
+          'Único arquitecto y desarrollador de Kuantum Educa desde cero, diseñando el esquema de datos y contratos de API.',
+          'Diseñé un backend orientado a eventos con Firebase Cloud Functions y Pub/Sub para procesar asíncronamente miles de simulaciones concurrentes.',
+          'Desarrollé y desplegué un microservicio en FastAPI contenerizado con Docker en Google Cloud Run para transacciones y usuarios en PostgreSQL.',
+          'Diseñé y probé un módulo de emparejamiento vocacional con PostgreSQL pgvector en entornos de staging.',
+          'Construí el panel administrativo web en Angular 19 utilizando Signals para manejo reactivo del estado y gráficos interactivos con PrimeNG.'
         ],
-        stack: ['Angular 19', 'FastAPI', 'Firebase Functions', 'Pub/Sub', 'PostgreSQL (pgvector)', 'Google Cloud Run', 'Docker']
+        stack: ['Angular 19', 'Signals', 'FastAPI', 'Python', 'Firebase Pub/Sub', 'PostgreSQL', 'Docker', 'Cloud Run']
       },
       {
-        role: 'Desarrollador Full-Stack y Administración de Infraestructura',
+        role: 'Desarrollador Full-Stack y Admin Cloud',
         company: 'Plataforma E-learning "Comienza Pro"',
         period: 'Ago 2025 – Nov 2025',
-        location: 'Perú (Remoto)',
+        location: 'Huánuco, Perú (Remoto)',
         highlights: [
-          'Aprovisioné, configuré y administré la infraestructura de e-learning Moodle en la nube de Hetzner para 9 cursos especializados.',
-          'Personalicé servicios web, optimicé el rendimiento de la base de datos y mantuve 99.9% de disponibilidad para los estudiantes.'
+          'Gestioné el aprovisionamiento, configuración Linux y mantenimiento continuo de servidores en la nube de Hetzner.',
+          'Personalicé y administré la plataforma de e-learning para dar soporte a 9 cursos especializados con una interfaz intuitiva.'
         ],
-        stack: ['Hetzner Cloud', 'Moodle', 'PHP', 'MySQL', 'Linux', 'Apache']
+        stack: ['Linux', 'Hetzner Cloud', 'Moodle', 'PHP', 'MySQL', 'Nginx']
       }
     ],
     recognitionsList: [
-      { title: '1er Puesto — Concurso de Programación', entity: 'Universidad de Huánuco', date: 'Nov 2023', icon: 'fa-trophy' },
-      { title: '1er Puesto — Concurso de Innovación Pitch Day', entity: 'Universidad de Huánuco', date: 'Nov 2023', icon: 'fa-award' },
-      { title: 'Reconocimiento Oficial por Gatilín Digital', entity: 'Municipalidad Distrital de Amarilis', date: 'Feb 2024', icon: 'fa-certificate' }
+      {
+        title: '1er Puesto — Concurso Interuniversitario de Programación (Formato ACM)',
+        entity: 'Universidad Nacional Hermilio Valdizán (UNHEVAL)',
+        date: '2023',
+        icon: 'fa-trophy'
+      },
+      {
+        title: '1er Puesto — Pitch Day de Innovación y Emprendimiento',
+        entity: 'Universidad de Huánuco (UDH)',
+        date: '2024',
+        icon: 'fa-medal'
+      },
+      {
+        title: 'Diploma de Reconocimiento Municipal a la Innovación Digital',
+        entity: 'Municipalidad Distrital de Amarilis',
+        date: '2023',
+        icon: 'fa-award'
+      }
     ]
   }
 };
 
 export class TranslationService {
-  private readonly _lang = signal<Lang>('en');
-  readonly currentLang = this._lang.asReadonly();
-  readonly t = () => TRANSLATIONS[this._lang()];
+  private readonly storageKey = 'andre_portfolio_lang';
+  readonly currentLang = signal<Lang>(this.getInitialLang());
+
+  readonly t = () => TRANSLATIONS[this.currentLang()];
 
   setLang(lang: Lang) {
-    this._lang.set(lang);
+    this.currentLang.set(lang);
     if (typeof localStorage !== 'undefined') {
-      localStorage.setItem('portfolio_lang', lang);
+      localStorage.setItem(this.storageKey, lang);
     }
   }
 
-  constructor() {
+  private getInitialLang(): Lang {
     if (typeof localStorage !== 'undefined') {
-      const saved = localStorage.getItem('portfolio_lang') as Lang;
-      if (saved === 'en' || saved === 'es') {
-        this._lang.set(saved);
-      }
+      const saved = localStorage.getItem(this.storageKey) as Lang;
+      if (saved === 'en' || saved === 'es') return saved;
     }
+    if (typeof navigator !== 'undefined' && navigator.language?.toLowerCase().startsWith('es')) {
+      return 'es';
+    }
+    return 'en';
   }
 }

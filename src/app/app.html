@@ -18,6 +18,12 @@
       </button>
       <button 
         class="nav-link-btn" 
+        [class.active]="activeSection() === 'about'"
+        (click)="scrollToSection('about')">
+        {{ t().nav.about }}
+      </button>
+      <button 
+        class="nav-link-btn" 
         [class.active]="activeSection() === 'projects'"
         (click)="scrollToSection('projects')">
         {{ t().nav.projects }}
@@ -87,6 +93,7 @@
   @if (mobileMenuOpen()) {
     <div class="mobile-menu fade-in-up">
       <button class="mobile-nav-link" (click)="scrollToSection('overview')">{{ t().nav.overview }}</button>
+      <button class="mobile-nav-link" (click)="scrollToSection('about')">{{ t().nav.about }}</button>
       <button class="mobile-nav-link" (click)="scrollToSection('projects')">{{ t().nav.projects }}</button>
       <button class="mobile-nav-link" (click)="scrollToSection('skills')">{{ t().nav.skills }}</button>
       <button class="mobile-nav-link" (click)="scrollToSection('experience')">{{ t().nav.experience }}</button>
@@ -142,7 +149,7 @@
       <div class="hero-metrics-strip card-surface fade-in-up">
         <div class="metric-item">
           <span class="metric-val">1.5+ <span class="metric-unit">Years</span></span>
-          <span class="metric-lbl">Production Systems & Cloud</span>
+          <span class="metric-lbl">Practical Web & Backend</span>
         </div>
         <div class="metric-divider"></div>
         <div class="metric-item">
@@ -152,19 +159,44 @@
         <div class="metric-divider"></div>
         <div class="metric-item">
           <span class="metric-val">3x <span class="metric-unit">Awards</span></span>
-          <span class="metric-lbl">Programming, Innovation & Municipal</span>
+          <span class="metric-lbl">ACM Coding & Innovation</span>
         </div>
         <div class="metric-divider"></div>
         <div class="metric-item">
-          <span class="metric-val">Rust · Python · TS</span>
-          <span class="metric-lbl">Core Systems & Web Tooling</span>
+          <span class="metric-val">Python · Angular · SQL</span>
+          <span class="metric-lbl">FastAPI, Django & PostgreSQL</span>
         </div>
       </div>
     </div>
   </section>
 
   <!-- =========================================================================
-       FEATURED SYSTEMS & PROJECTS SECTION
+       ABOUT & VALUE PROPOSITION SECTION
+       ========================================================================= -->
+  <section id="about" class="section-padding">
+    <div class="section-header">
+      <div class="section-tag">
+        <i class="fas fa-user-check"></i> {{ aboutData().tag }}
+      </div>
+      <h2 class="section-title">{{ aboutData().title }}</h2>
+      <p class="section-subtitle">{{ aboutData().subtitle }}</p>
+    </div>
+
+    <div class="about-pillars-grid">
+      @for (pillar of aboutData().pillars; track pillar.title) {
+        <div class="pillar-card card-surface">
+          <div class="pillar-icon-box">
+            <i [class]="'fas ' + pillar.icon + ' text-accent'"></i>
+          </div>
+          <h3 class="pillar-title">{{ pillar.title }}</h3>
+          <p class="pillar-desc">{{ pillar.desc }}</p>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       FEATURED PROJECTS SECTION
        ========================================================================= -->
   <section id="projects" class="section-padding">
     <div class="section-header">
@@ -181,7 +213,7 @@
         <div class="flagship-card card-surface">
           <div class="flagship-badge-row">
             <span class="badge-featured"><i class="fas fa-star"></i> {{ proj.badge }}</span>
-            <span class="tech-pill font-mono">Angular 19 · FastAPI · Pub/Sub · pgvector</span>
+            <span class="tech-pill font-mono">Angular 19 · FastAPI · Pub/Sub · PostgreSQL</span>
           </div>
 
           <div class="flagship-header">
@@ -261,7 +293,7 @@
         </div>
       }
 
-      <!-- FLAGSHIP CASE STUDY 2: SYSMON -->
+      <!-- FLAGSHIP CASE STUDY 2: SYSMON (Personal Systems Project) -->
       @if (proj.id === 'sysmon-3ds') {
         <div class="flagship-card card-surface" style="margin-top: 32px;">
           <div class="flagship-badge-row">
@@ -310,12 +342,12 @@
 
             <div class="terminal-body font-mono">
               @if (sysmonTerminalTab() === 'telemetry') {
-                <div class="term-line"><span class="term-dim">[SYSTEM]</span> Host: Fedora Linux 43 (x86_64) | Uptime: 14h 22m</div>
-                <div class="term-line"><span class="term-cyan">[CPU]</span> AMD Ryzen 7 5700X @ 4.6GHz — 42.1°C | Load: 12.4%</div>
+                <div class="term-line"><span class="term-dim">[SYSTEM]</span> Host: Fedora Linux (x86_64) | Concurrency: Tokio async</div>
+                <div class="term-line"><span class="term-cyan">[CPU]</span> AMD Ryzen 7 @ 4.6GHz — 42.1°C | Load: 12.4%</div>
                 <div class="term-line"><span class="term-cyan">[GPU]</span> NVIDIA RTX 3070 — 48.0°C | Fan: 38% | VRAM: 3.2 / 8.0 GB</div>
                 <div class="term-line"><span class="term-green">[3DS]</span> Handheld IP: 192.168.1.144:7341 | Auth: PIN_VERIFIED | Latency: 0.8ms</div>
               } @else if (sysmonTerminalTab() === 'macros') {
-                <div class="term-line"><span class="term-dim">[HANG HUNTER]</span> Top resource-heavy processes:</div>
+                <div class="term-line"><span class="term-dim">[PROCESS CONTROL]</span> Active system processes:</div>
                 <div class="term-process-row">
                   <span>PID 4821 | chromium --type=renderer | 18.4% CPU | 1.8GB RAM</span>
                   <button (click)="simulateKillProcess()" class="term-kill-btn" [disabled]="isSysmonKillingProcess()">
@@ -325,8 +357,8 @@
                 <div class="term-line"><span class="term-dim">PID 1980 | cargo-watch --exec test | 4.2% CPU | 320MB RAM</span></div>
               } @else {
                 <div class="term-line"><span class="term-yellow">RAW_TCP_PACKET (3DS &lt;-&gt; PC Server):</span></div>
-                <div class="term-line text-muted">&#123;"c_temp":42.1,"g_temp":48.0,"ram_used":7840,"ram_total":32768,"fan":38,"media":"Playing"&#125;</div>
-                <div class="term-line"><span class="term-green">&gt; 3DS C parser:</span> strstr() / sscanf() zero-heap parse completed in 42μs.</div>
+                <div class="term-line text-muted">&#123;"c_temp":42.1,"g_temp":48.0,"ram_used":7840,"ram_total":32768,"fan":38&#125;</div>
+                <div class="term-line"><span class="term-green">&gt; 3DS C parser:</span> Zero-heap parsing completed via stack buffer.</div>
               }
             </div>
           </div>
@@ -558,11 +590,15 @@
         </div>
         <div class="contact-info-block">
           <span class="info-lbl">{{ t().contact.locationLabel }}</span>
-          <span class="info-val">{{ profile.location }}</span>
+          <span class="info-val">{{ profile.location }} (UTC-5)</span>
         </div>
         <div class="contact-info-block">
           <span class="info-lbl">{{ t().contact.availabilityLabel }}</span>
           <span class="info-val text-emerald">{{ t().contact.availabilityValue }}</span>
+        </div>
+        <div class="contact-info-block">
+          <span class="info-lbl">{{ t().contact.targetRolesLabel }}</span>
+          <span class="info-val">{{ t().contact.targetRolesValue }}</span>
         </div>
       </div>
 
@@ -586,7 +622,7 @@
   <!-- Footer -->
   <footer class="app-footer">
     <div class="footer-inner">
-      <p>© 2026 Gustavo Andre Argandoña Becerra. Crafted with Angular 22 & Three.js.</p>
+      <p>© 2026 Gustavo Andre Argandoña Becerra. Crafted with Angular 22 & TypeScript.</p>
       <div class="footer-links">
         <a [href]="profile.github" target="_blank" rel="noopener noreferrer">GitHub</a>
         <a [href]="profile.linkedin" target="_blank" rel="noopener noreferrer">LinkedIn</a>

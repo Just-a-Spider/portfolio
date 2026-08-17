@@ -16,7 +16,7 @@ export class App implements AfterViewInit {
   readonly currentLang = this.i18n.currentLang;
 
   // Active Navigation & Section Tracking
-  readonly SECTIONS = ['overview', 'projects', 'skills', 'experience', 'contact'];
+  readonly SECTIONS = ['overview', 'about', 'projects', 'skills', 'experience', 'contact'];
   readonly activeSection = signal<string>('overview');
   readonly isScrolled = signal<boolean>(false);
   readonly mobileMenuOpen = signal<boolean>(false);
@@ -47,6 +47,7 @@ export class App implements AfterViewInit {
   };
 
   // Reactive Data
+  readonly aboutData = computed(() => this.t().about);
   readonly projects = computed(() => this.t().projectsList);
   readonly skillCategories = computed(() => this.t().skillsList);
   readonly experiences = computed(() => this.t().experiencesList);
