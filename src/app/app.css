@@ -842,11 +842,11 @@
 /* Skills Matrix */
 .skills-matrix-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 24px;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 840px) {
   .skills-matrix-grid {
     grid-template-columns: 1fr;
     gap: 16px;
@@ -854,7 +854,10 @@
 }
 
 .skill-category-card {
-  padding: 28px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 @media (max-width: 640px) {
@@ -864,58 +867,81 @@
 }
 
 .cat-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
   margin-bottom: 20px;
 }
 
-.cat-header i {
+.cat-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.cat-icon-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cat-icon-title i {
   font-size: 1.2rem;
 }
 
 .cat-title {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
 }
 
-.skill-chips-list {
+.cat-badge {
+  font-size: 0.72rem;
+  color: var(--accent-primary);
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+}
+
+.cat-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.skill-tags-cloud {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 8px;
 }
 
-.skill-chip {
-  display: flex;
+.skill-tag {
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 8px 12px;
-  background: rgba(255, 255, 255, 0.02);
+  gap: 6px;
+  padding: 8px 14px;
+  background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
-  transition: all var(--transition-fast);
-  gap: 8px;
-}
-
-.skill-chip.highlight {
-  background: rgba(56, 189, 248, 0.05);
-  border-color: rgba(56, 189, 248, 0.2);
-}
-
-.skill-name {
-  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
   font-weight: 500;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+
+.skill-tag:hover {
   color: var(--text-main);
+  background: rgba(255, 255, 255, 0.07);
+  border-color: var(--border-hover);
+  transform: translateY(-1px);
 }
 
-.skill-level {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-dim);
-  flex-shrink: 0;
-}
-
-.skill-chip.highlight .skill-level {
-  color: var(--accent-primary);
+.skill-tag.highlight {
+  color: var(--text-main);
+  background: rgba(56, 189, 248, 0.07);
+  border-color: rgba(56, 189, 248, 0.3);
+  font-weight: 600;
 }
 
 /* Experience Timeline */

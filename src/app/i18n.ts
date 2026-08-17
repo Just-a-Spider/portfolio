@@ -22,10 +22,17 @@ export interface ProjectData {
   };
 }
 
+export interface SkillItem {
+  name: string;
+  highlight?: boolean;
+}
+
 export interface SkillCategoryData {
   name: string;
+  badge: string;
   icon: string;
-  skills: { name: string; level: string; highlight?: boolean }[];
+  desc: string;
+  skills: SkillItem[];
 }
 
 export interface ExperienceData {
@@ -57,6 +64,12 @@ export interface AboutData {
   pillars: AboutPillar[];
 }
 
+export interface HeroMetric {
+  val: string;
+  unit: string;
+  lbl: string;
+}
+
 export interface TranslationSchema {
   nav: {
     overview: string;
@@ -77,6 +90,7 @@ export interface TranslationSchema {
     downloadCvBtn: string;
     copyEmailBtn: string;
     copiedToast: string;
+    metrics: HeroMetric[];
   };
   about: AboutData;
   projects: {
@@ -92,6 +106,8 @@ export interface TranslationSchema {
     liveDemo: string;
     repo: string;
     keyHighlights: string;
+    kuantumTabFlow: string;
+    kuantumTabDecisions: string;
   };
   skills: {
     tag: string;
@@ -157,7 +173,13 @@ export const TRANSLATIONS: Record<Lang, TranslationSchema> = {
       viewProjectsBtn: 'Explore Work',
       downloadCvBtn: 'Download CV (PDF)',
       copyEmailBtn: 'Copy Email',
-      copiedToast: 'Email copied to clipboard!'
+      copiedToast: 'Email copied to clipboard!',
+      metrics: [
+        { val: '1.5+', unit: 'Years', lbl: 'Practical Web & Backend' },
+        { val: '10th', unit: 'Cycle', lbl: 'Systems Engineering (UDH)' },
+        { val: '3x', unit: 'Awards', lbl: 'Programming & Innovation' },
+        { val: 'Python · Angular · SQL', unit: '', lbl: 'FastAPI, Django & PostgreSQL' }
+      ]
     },
     about: {
       tag: 'ABOUT ME',
@@ -177,7 +199,7 @@ export const TRANSLATIONS: Record<Lang, TranslationSchema> = {
         {
           icon: 'fa-brain',
           title: 'Fast Learning & Problem Solving',
-          desc: 'Demonstrated ability to pick up new frameworks, libraries, and protocols rapidly. 1st place winner in regional inter-university programming competitions.'
+          desc: 'Demonstrated ability to pick up new frameworks, libraries, and protocols rapidly. 1st place winner in university programming and innovation competitions.'
         },
         {
           icon: 'fa-users-cog',
@@ -198,7 +220,9 @@ export const TRANSLATIONS: Record<Lang, TranslationSchema> = {
       viewArch: 'View Details',
       liveDemo: 'Live Application',
       repo: 'Source Code',
-      keyHighlights: 'Key Engineering Highlights'
+      keyHighlights: 'Key Engineering Highlights',
+      kuantumTabFlow: 'Data Lifecycle & Pub/Sub Flow',
+      kuantumTabDecisions: 'Architectural Decisions'
     },
     skills: {
       tag: 'TECHNICAL SKILLS',
@@ -253,7 +277,7 @@ export const TRANSLATIONS: Record<Lang, TranslationSchema> = {
           'Prototyped & tested pgvector career matching in staging',
           'Reactive administrative UI built with Angular 19 Signals & PrimeNG'
         ],
-        liveUrl: 'https://kuantum.pe',
+        liveUrl: 'https://kuantumeduca.com',
         badge: 'Flagship Web Platform',
         featured: true,
         icon: 'fa-graduation-cap',
@@ -280,7 +304,7 @@ export const TRANSLATIONS: Record<Lang, TranslationSchema> = {
         subtitle: 'Low-Level PC Telemetry & Touch Controller via 3DS',
         shortDesc: 'A personal systems programming project converting a Nintendo 3DS into a secondary hardware monitor and macro pad over Wi-Fi using Rust (Tokio) and C.',
         fullDesc: 'A personal project built to explore low-level systems programming, networking, and Linux kernel drivers. Developed a multi-threaded Rust server with Tokio to gather live hardware stats and virtualize input events via /dev/uinput. Wrote a low-overhead C client for the 3DS using devkitARM with zero-heap TCP packet parsing.',
-        techStack: ['Rust 2024', 'Tokio', 'C (devkitARM)', 'evdev / uinput', 'sysinfo', 'Linux RPM'],
+        techStack: ['Rust', 'Tokio', 'C (devkitARM)', 'evdev / uinput', 'sysinfo', 'Linux RPM'],
         metrics: [
           'Sub-millisecond local network response time (<1ms)',
           'Zero-heap string and packet parsing in C (libctru)',
@@ -330,20 +354,20 @@ export const TRANSLATIONS: Record<Lang, TranslationSchema> = {
       },
       {
         id: 'gatilin-digital',
-        title: 'Gatilín Digital POS & Billing',
+        title: 'Gatilín Digital',
         category: 'fullstack',
-        subtitle: 'Commercial Billing & Inventory Web Platform',
-        shortDesc: 'Award-winning web platform for inventory management and automated electronic billing using Django REST Framework and Angular.',
-        fullDesc: 'Engineered a web application for local commercial inventory tracking, electronic ticket generation, and automated PDF receipt generation. Built with Django REST Framework and Angular, deployed on Heroku with PostgreSQL.',
+        subtitle: 'Cultural Festivity Tracking & Documentation Platform',
+        shortDesc: 'Web application and documentation platform for cofradías during the traditional Festival de los Negritos de Huánuco 2024, built with Django REST Framework, Angular 16, and PostgreSQL on Heroku.',
+        fullDesc: 'Developed a cultural documentation and real-time tracking web application for dance cofradías during the Festival de los Negritos de Huánuco 2024. Built with Django REST Framework for the backend API and Angular 16 for the responsive frontend, backed by PostgreSQL and deployed on Heroku. Officially recognized by the District Municipality of Amarilis.',
         techStack: ['Django REST Framework', 'Angular 16', 'PostgreSQL', 'Heroku', 'TypeScript'],
         metrics: [
-          'Awarded 1st Place in Amarilis Municipal Innovation Competition',
-          'Electronic PDF ticket and receipt generation',
-          'Real-time inventory and sales tracking'
+          'Official Municipal Recognition Diploma (Municipalidad Distrital de Amarilis, 2024)',
+          'Real-time itinerary and route tracking for participating dance cofradías',
+          'Historical documentation and cultural schedule archive'
         ],
-        badge: 'Municipal Award Winner',
+        badge: 'Municipal Recognition',
         featured: false,
-        icon: 'fa-cash-register'
+        icon: 'fa-map-marked-alt'
       },
       {
         id: 'estructura-datos',
@@ -366,44 +390,64 @@ export const TRANSLATIONS: Record<Lang, TranslationSchema> = {
     skillsList: [
       {
         name: 'Core Web & Backend',
+        badge: 'Daily / Core Stack',
         icon: 'fa-server',
+        desc: 'Designing scalable server APIs, modular architectures, and reactive web interfaces.',
         skills: [
-          { name: 'Python (FastAPI, Django, DRF)', level: 'Advanced / Daily', highlight: true },
-          { name: 'Angular (Signals, TypeScript)', level: 'Advanced / Daily', highlight: true },
-          { name: 'PostgreSQL & Relational DBs', level: 'Intermediate / Daily', highlight: true },
-          { name: 'RESTful API Architecture', level: 'Intermediate / Daily', highlight: true },
-          { name: 'HTML5, CSS3 & TailwindCSS', level: 'Intermediate / Daily' }
+          { name: 'FastAPI', highlight: true },
+          { name: 'Django & DRF', highlight: true },
+          { name: 'Angular (Signals)', highlight: true },
+          { name: 'Python', highlight: true },
+          { name: 'TypeScript', highlight: true },
+          { name: 'PostgreSQL', highlight: true },
+          { name: 'RESTful APIs' },
+          { name: 'TailwindCSS' },
+          { name: 'HTML5 & CSS3' },
+          { name: 'SQLite' }
         ]
       },
       {
-        name: 'Cloud, DevOps & Tools',
+        name: 'Cloud, DevOps & Infrastructure',
+        badge: 'Cloud & DevOps',
         icon: 'fa-cloud',
+        desc: 'Deploying containerized microservices and managing cloud infrastructure.',
         skills: [
-          { name: 'Docker & Containerization', level: 'Intermediate', highlight: true },
-          { name: 'Google Cloud Run & GCP', level: 'Intermediate', highlight: true },
-          { name: 'Firebase (Pub/Sub, Functions)', level: 'Intermediate' },
-          { name: 'Linux Server Administration', level: 'Intermediate' },
-          { name: 'Git, GitHub & Version Control', level: 'Daily' }
+          { name: 'Docker', highlight: true },
+          { name: 'Google Cloud Run', highlight: true },
+          { name: 'Firebase Pub/Sub', highlight: true },
+          { name: 'Firebase Cloud Functions' },
+          { name: 'Linux Server Admin' },
+          { name: 'Git & GitHub' },
+          { name: 'Nginx' },
+          { name: 'Hetzner Cloud' }
         ]
       },
       {
-        name: 'Systems & Technical Explorations',
+        name: 'Systems & Low-Level Explorations',
+        badge: 'Personal Projects',
         icon: 'fa-microchip',
+        desc: 'Investigating operating system internals, Linux kernel drivers, and network concurrency.',
         skills: [
-          { name: 'Rust (axum, tokio, uinput)', level: 'Personal Projects', highlight: true },
-          { name: 'C & Embedded / devkitARM', level: 'Personal Projects' },
-          { name: 'Linux Kernel Input (/dev/uinput)', level: 'Personal Projects' },
-          { name: 'TCP Socket Networking', level: 'Personal Projects' }
+          { name: 'Rust (Tokio, axum)', highlight: true },
+          { name: 'C & devkitARM (3DS)', highlight: true },
+          { name: 'Linux Kernel (/dev/uinput)' },
+          { name: 'TCP Socket Networking' },
+          { name: 'Linux RPM Packaging' },
+          { name: 'D-Bus & Wayland Basics' }
         ]
       },
       {
-        name: 'Applied AI & Practical Tools',
+        name: 'Applied Tools & Practical AI',
+        badge: 'Tools & Prototyping',
         icon: 'fa-robot',
+        desc: 'Integrating AI inference, local speech transcription, and desktop automation tools.',
         skills: [
-          { name: 'OpenAI API & Local Whisper', level: 'Practical / Tooling', highlight: true },
-          { name: 'pgvector & RAG Concepts', level: 'Staging / Research' },
-          { name: 'Computer Vision (YOLOv5, OpenCV)', level: 'Foundational / POC' },
-          { name: 'PyQt6 Desktop Tooling', level: 'Intermediate' }
+          { name: 'OpenAI API', highlight: true },
+          { name: 'Whisper Audio Ingestion', highlight: true },
+          { name: 'pgvector & RAG (Staging)' },
+          { name: 'PyQt6 Desktop Tooling' },
+          { name: 'YOLOv5 (Vision POC)' },
+          { name: 'OpenCV Basics' }
         ]
       }
     ],
@@ -412,7 +456,7 @@ export const TRANSLATIONS: Record<Lang, TranslationSchema> = {
         role: 'Full-Stack Developer',
         company: 'Kuantum Innovation',
         period: 'Feb 2025 – Jun 2026',
-        location: 'Huánuco, Peru (Remote)',
+        location: 'Peru (Remote)',
         highlights: [
           'Sole architect and developer of Kuantum Educa from scratch, designing the complete data schema and API contracts.',
           'Built an event-driven backend using Firebase Cloud Functions and Pub/Sub to asynchronously process thousands of concurrent simulation attempts without blocking the user interface.',
@@ -426,7 +470,7 @@ export const TRANSLATIONS: Record<Lang, TranslationSchema> = {
         role: 'Full-Stack Developer & Cloud Admin',
         company: 'E-learning Platform "Comienza Pro"',
         period: 'Aug 2025 – Nov 2025',
-        location: 'Huánuco, Peru (Remote)',
+        location: 'Peru (Remote)',
         highlights: [
           'Managed end-to-end server provisioning, Linux configuration, and continuous maintenance in the Hetzner cloud infrastructure.',
           'Customized and administered the e-learning platform to support 9 specialized courses with an intuitive user experience.'
@@ -436,21 +480,21 @@ export const TRANSLATIONS: Record<Lang, TranslationSchema> = {
     ],
     recognitionsList: [
       {
-        title: '1st Place — Inter-University Programming Contest (ACM Format)',
-        entity: 'Universidad Nacional Hermilio Valdizán (UNHEVAL)',
+        title: '1st Place — Programming Contest',
+        entity: 'Universidad de Huánuco (UDH)',
         date: '2023',
         icon: 'fa-trophy'
       },
       {
-        title: '1st Place — Innovation & Business Pitch Day',
+        title: '1st Place — I Innovation & Research Projects Contest "Pitch Day 2023"',
         entity: 'Universidad de Huánuco (UDH)',
-        date: '2024',
+        date: '2023',
         icon: 'fa-medal'
       },
       {
-        title: 'Municipal Recognition for Digital Innovation',
+        title: 'Recognition for Technological Project "Gatilín Digital"',
         entity: 'Municipalidad Distrital de Amarilis',
-        date: '2023',
+        date: '2024',
         icon: 'fa-award'
       }
     ]
@@ -474,7 +518,13 @@ export const TRANSLATIONS: Record<Lang, TranslationSchema> = {
       viewProjectsBtn: 'Ver Proyectos',
       downloadCvBtn: 'Descargar CV (PDF)',
       copyEmailBtn: 'Copiar Correo',
-      copiedToast: '¡Correo copiado al portapapeles!'
+      copiedToast: '¡Correo copiado al portapapeles!',
+      metrics: [
+        { val: '1.5+', unit: 'Años', lbl: 'Experiencia Web y Backend' },
+        { val: '10mo', unit: 'Ciclo', lbl: 'Ingeniería de Sistemas (UDH)' },
+        { val: '3x', unit: 'Premios', lbl: 'Programación e Innovación' },
+        { val: 'Python · Angular · SQL', unit: '', lbl: 'FastAPI, Django y PostgreSQL' }
+      ]
     },
     about: {
       tag: 'SOBRE MÍ',
@@ -494,7 +544,7 @@ export const TRANSLATIONS: Record<Lang, TranslationSchema> = {
         {
           icon: 'fa-brain',
           title: 'Rápido Aprendizaje y Resolución de Problemas',
-          desc: 'Capacidad demostrada para dominar nuevos frameworks, librerías y protocolos de forma autodidacta. 1er puesto en concursos interuniversitarios de programación competitiva (estilo ACM).'
+          desc: 'Capacidad demostrada para dominar nuevos frameworks, librerías y protocolos de forma autodidacta. 1er puesto en concursos de programación e innovación universitaria.'
         },
         {
           icon: 'fa-users-cog',
@@ -515,7 +565,9 @@ export const TRANSLATIONS: Record<Lang, TranslationSchema> = {
       viewArch: 'Ver Detalles',
       liveDemo: 'Ver en Vivo',
       repo: 'Código Fuente',
-      keyHighlights: 'Aspectos Técnicos Clave'
+      keyHighlights: 'Aspectos Técnicos Clave',
+      kuantumTabFlow: 'Flujo de Datos y Pub/Sub',
+      kuantumTabDecisions: 'Decisiones Arquitectónicas'
     },
     skills: {
       tag: 'HABILIDADES TÉCNICAS',
@@ -570,7 +622,7 @@ export const TRANSLATIONS: Record<Lang, TranslationSchema> = {
           'Pipeline de emparejamiento vocacional con pgvector probado en staging',
           'Panel administrativo reactivo desarrollado con Angular 19 Signals y PrimeNG'
         ],
-        liveUrl: 'https://kuantum.pe',
+        liveUrl: 'https://kuantumeduca.com',
         badge: 'Plataforma Web Principal',
         featured: true,
         icon: 'fa-graduation-cap',
@@ -597,7 +649,7 @@ export const TRANSLATIONS: Record<Lang, TranslationSchema> = {
         subtitle: 'Telemetría de PC y Macro Pad Táctil mediante 3DS',
         shortDesc: 'Proyecto personal de sistemas que convierte una Nintendo 3DS en un monitor secundario de hardware y macro pad sobre Wi-Fi usando Rust (Tokio) y C.',
         fullDesc: 'Proyecto personal desarrollado para profundizar en programación de bajo nivel, redes y controladores de Linux. Desarrollé un servidor multi-hilo en Rust con Tokio para consultar estadísticas del sistema y virtualizar entradas mediante /dev/uinput. Escribí un cliente ligero en C para la 3DS usando devkitARM con parsing de paquetes TCP sin asignación dinámica en heap.',
-        techStack: ['Rust 2024', 'Tokio', 'C (devkitARM)', 'evdev / uinput', 'sysinfo', 'Linux RPM'],
+        techStack: ['Rust', 'Tokio', 'C (devkitARM)', 'evdev / uinput', 'sysinfo', 'Linux RPM'],
         metrics: [
           'Tiempo de respuesta en red local sub-milisegundo (<1ms)',
           'Parsing de paquetes en C sin asignaciones en heap (libctru)',
@@ -647,20 +699,20 @@ export const TRANSLATIONS: Record<Lang, TranslationSchema> = {
       },
       {
         id: 'gatilin-digital',
-        title: 'Gatilín Digital — POS y Facturación',
+        title: 'Gatilín Digital',
         category: 'fullstack',
-        subtitle: 'Plataforma Web de Facturación e Inventario',
-        shortDesc: 'Plataforma web galardonada para gestión de inventario y facturación electrónica construida con Django REST Framework y Angular.',
-        fullDesc: 'Desarrollé una aplicación web para el seguimiento de inventarios comerciales, emisión de comprobantes y generación automatizada de boletas en PDF. Construida con Django REST Framework y Angular, desplegada en Heroku con PostgreSQL.',
+        subtitle: 'Plataforma Web de Seguimiento y Documentación Festiva',
+        shortDesc: 'Aplicación web y plataforma de documentación para cofradías durante el Festival de Negritos de Huánuco 2024, desarrollada con Django REST Framework, Angular 16 y PostgreSQL en Heroku.',
+        fullDesc: 'Desarrollé una aplicación web de documentación cultural y seguimiento en tiempo real para las cofradías de danza durante el tradicional Festival de los Negritos de Huánuco 2024. Construida con Django REST Framework para la API y Angular 16 para el frontend reactivo, con base de datos PostgreSQL y despliegue en Heroku. Reconocimiento oficial otorgado por la Municipalidad Distrital de Amarilis.',
         techStack: ['Django REST Framework', 'Angular 16', 'PostgreSQL', 'Heroku', 'TypeScript'],
         metrics: [
-          'Ganador del 1er Puesto en el Concurso de Innovación Municipal de Amarilis',
-          'Generación automatizada de boletas y reportes en PDF',
-          'Control de inventario y registro de ventas en tiempo real'
+          'Reconocimiento Oficial de la Municipalidad Distrital de Amarilis (2024)',
+          'Seguimiento de rutas e itinerarios de cofradías de danza en tiempo real',
+          'Archivo histórico y cronograma festivo digitalizado'
         ],
-        badge: 'Premio Municipal de Innovación',
+        badge: 'Reconocimiento Municipal',
         featured: false,
-        icon: 'fa-cash-register'
+        icon: 'fa-map-marked-alt'
       },
       {
         id: 'estructura-datos',
@@ -683,44 +735,64 @@ export const TRANSLATIONS: Record<Lang, TranslationSchema> = {
     skillsList: [
       {
         name: 'Desarrollo Web y Backend',
+        badge: 'Stack Principal',
         icon: 'fa-server',
+        desc: 'Diseño de APIs escalables, arquitecturas modulares e interfaces web reactivas.',
         skills: [
-          { name: 'Python (FastAPI, Django, DRF)', level: 'Avanzado / Diario', highlight: true },
-          { name: 'Angular (Signals, TypeScript)', level: 'Avanzado / Diario', highlight: true },
-          { name: 'PostgreSQL y Bases Relacionales', level: 'Intermedio / Diario', highlight: true },
-          { name: 'Diseño de APIs RESTful', level: 'Intermedio / Diario', highlight: true },
-          { name: 'HTML5, CSS3 y TailwindCSS', level: 'Intermedio / Diario' }
+          { name: 'FastAPI', highlight: true },
+          { name: 'Django & DRF', highlight: true },
+          { name: 'Angular (Signals)', highlight: true },
+          { name: 'Python', highlight: true },
+          { name: 'TypeScript', highlight: true },
+          { name: 'PostgreSQL', highlight: true },
+          { name: 'APIs RESTful' },
+          { name: 'TailwindCSS' },
+          { name: 'HTML5 y CSS3' },
+          { name: 'SQLite' }
         ]
       },
       {
-        name: 'Nube, DevOps y Herramientas',
+        name: 'Nube, DevOps e Infraestructura',
+        badge: 'Nube y DevOps',
         icon: 'fa-cloud',
+        desc: 'Despliegue de microservicios contenerizados y administración de infraestructura en la nube.',
         skills: [
-          { name: 'Docker y Contenerización', level: 'Intermedio', highlight: true },
-          { name: 'Google Cloud Run y GCP', level: 'Intermedio', highlight: true },
-          { name: 'Firebase (Pub/Sub, Functions)', level: 'Intermedio' },
-          { name: 'Administración de Servidores Linux', level: 'Intermedio' },
-          { name: 'Git, GitHub y Control de Versiones', level: 'Diario' }
+          { name: 'Docker', highlight: true },
+          { name: 'Google Cloud Run', highlight: true },
+          { name: 'Firebase Pub/Sub', highlight: true },
+          { name: 'Firebase Cloud Functions' },
+          { name: 'Administración de Servidores Linux' },
+          { name: 'Git y GitHub' },
+          { name: 'Nginx' },
+          { name: 'Hetzner Cloud' }
         ]
       },
       {
-        name: 'Sistemas y Exploraciones Técnicas',
+        name: 'Sistemas y Exploraciones de Bajo Nivel',
+        badge: 'Proyectos Personales',
         icon: 'fa-microchip',
+        desc: 'Exploración de sistemas operativos, controladores en Linux y concurrencia de red.',
         skills: [
-          { name: 'Rust (axum, tokio, uinput)', level: 'Proyectos Personales', highlight: true },
-          { name: 'C y Embebidos / devkitARM', level: 'Proyectos Personales' },
-          { name: 'Controladores de Entrada Linux (/dev/uinput)', level: 'Proyectos Personales' },
-          { name: 'Redes y Sockets TCP', level: 'Proyectos Personales' }
+          { name: 'Rust (Tokio, axum)', highlight: true },
+          { name: 'C y devkitARM (3DS)', highlight: true },
+          { name: 'Controladores de Entrada Linux (/dev/uinput)' },
+          { name: 'Redes y Sockets TCP' },
+          { name: 'Empaquetado RPM para Linux' },
+          { name: 'Fundamentos de D-Bus y Wayland' }
         ]
       },
       {
-        name: 'IA Aplicada y Herramientas Prácticas',
+        name: 'Herramientas Prácticas e IA Aplicada',
+        badge: 'Herramientas y Prototipos',
         icon: 'fa-robot',
+        desc: 'Integración de modelos de IA, transcripción de voz local y herramientas de automatización.',
         skills: [
-          { name: 'API de OpenAI y Whisper Local', level: 'Práctico / Herramientas', highlight: true },
-          { name: 'pgvector y Conceptos RAG', level: 'Staging / Investigación' },
-          { name: 'Visión Computacional (YOLOv5, OpenCV)', level: 'Fundamentos / POC' },
-          { name: 'Herramientas de Escritorio PyQt6', level: 'Intermedio' }
+          { name: 'API de OpenAI', highlight: true },
+          { name: 'Ingesta de Audio con Whisper', highlight: true },
+          { name: 'pgvector y RAG (Staging)' },
+          { name: 'Herramientas de Escritorio PyQt6' },
+          { name: 'YOLOv5 (POC Visión)' },
+          { name: 'Fundamentos de OpenCV' }
         ]
       }
     ],
@@ -729,7 +801,7 @@ export const TRANSLATIONS: Record<Lang, TranslationSchema> = {
         role: 'Desarrollador Full-Stack',
         company: 'Kuantum Innovation',
         period: 'Feb 2025 – Jun 2026',
-        location: 'Huánuco, Perú (Remoto)',
+        location: 'Perú (Remoto)',
         highlights: [
           'Único arquitecto y desarrollador de Kuantum Educa desde cero, diseñando el esquema de datos y contratos de API.',
           'Diseñé un backend orientado a eventos con Firebase Cloud Functions y Pub/Sub para procesar asíncronamente miles de simulaciones concurrentes.',
@@ -743,7 +815,7 @@ export const TRANSLATIONS: Record<Lang, TranslationSchema> = {
         role: 'Desarrollador Full-Stack y Admin Cloud',
         company: 'Plataforma E-learning "Comienza Pro"',
         period: 'Ago 2025 – Nov 2025',
-        location: 'Huánuco, Perú (Remoto)',
+        location: 'Perú (Remoto)',
         highlights: [
           'Gestioné el aprovisionamiento, configuración Linux y mantenimiento continuo de servidores en la nube de Hetzner.',
           'Personalicé y administré la plataforma de e-learning para dar soporte a 9 cursos especializados con una interfaz intuitiva.'
@@ -753,21 +825,21 @@ export const TRANSLATIONS: Record<Lang, TranslationSchema> = {
     ],
     recognitionsList: [
       {
-        title: '1er Puesto — Concurso Interuniversitario de Programación (Formato ACM)',
-        entity: 'Universidad Nacional Hermilio Valdizán (UNHEVAL)',
+        title: '1er Puesto — Concurso de Programación',
+        entity: 'Universidad de Huánuco (UDH)',
         date: '2023',
         icon: 'fa-trophy'
       },
       {
-        title: '1er Puesto — Pitch Day de Innovación y Emprendimiento',
+        title: '1er Puesto — I Concurso de Proyectos de Investigación e Innovación "Pitch Day 2023"',
         entity: 'Universidad de Huánuco (UDH)',
-        date: '2024',
+        date: '2023',
         icon: 'fa-medal'
       },
       {
-        title: 'Diploma de Reconocimiento Municipal a la Innovación Digital',
+        title: 'Reconocimiento por el Proyecto Tecnológico "Gatilín Digital"',
         entity: 'Municipalidad Distrital de Amarilis',
-        date: '2023',
+        date: '2024',
         icon: 'fa-award'
       }
     ]

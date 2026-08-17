@@ -147,28 +147,18 @@
 
       <!-- Quick Metrics Strip -->
       <div class="hero-metrics-strip card-surface fade-in-up">
-        <div class="metric-item">
-          <span class="metric-val">1.5+ <span class="metric-unit">Years</span></span>
-          <span class="metric-lbl">Practical Web & Backend</span>
-        </div>
-        <div class="metric-divider"></div>
-        <div class="metric-item">
-          <span class="metric-val">10th <span class="metric-unit">Cycle</span></span>
-          <span class="metric-lbl">Systems Engineering (UDH)</span>
-        </div>
-        <div class="metric-divider"></div>
-        <div class="metric-item">
-          <span class="metric-val">3x <span class="metric-unit">Awards</span></span>
-          <span class="metric-lbl">ACM Coding & Innovation</span>
-        </div>
-        <div class="metric-divider"></div>
-        <div class="metric-item">
-          <span class="metric-val">Python · Angular · SQL</span>
-          <span class="metric-lbl">FastAPI, Django & PostgreSQL</span>
-        </div>
+        @for (m of t().hero.metrics; track m.lbl) {
+          <div class="metric-item">
+            <span class="metric-val">{{ m.val }} @if (m.unit) { <span class="metric-unit">{{ m.unit }}</span> }</span>
+            <span class="metric-lbl">{{ m.lbl }}</span>
+          </div>
+        }
       </div>
     </div>
   </section>
+
+  <!-- Segment Divider -->
+  <div class="section-divider"></div>
 
   <!-- =========================================================================
        ABOUT & VALUE PROPOSITION SECTION
@@ -194,6 +184,9 @@
       }
     </div>
   </section>
+
+  <!-- Segment Divider -->
+  <div class="section-divider"></div>
 
   <!-- =========================================================================
        FEATURED PROJECTS SECTION
@@ -238,13 +231,13 @@
                   class="widget-tab-btn" 
                   [class.active]="kuantumArchitectureTab() === 'flow'"
                   (click)="kuantumArchitectureTab.set('flow')">
-                  <i class="fas fa-project-diagram"></i> Data Lifecycle & Pub/Sub Flow
+                  <i class="fas fa-project-diagram"></i> {{ t().projects.kuantumTabFlow }}
                 </button>
                 <button 
                   class="widget-tab-btn" 
                   [class.active]="kuantumArchitectureTab() === 'decisions'"
                   (click)="kuantumArchitectureTab.set('decisions')">
-                  <i class="fas fa-shield-alt"></i> Architectural Decisions
+                  <i class="fas fa-shield-alt"></i> {{ t().projects.kuantumTabDecisions }}
                 </button>
               </div>
 
@@ -332,7 +325,7 @@
                 <button 
                   class="term-tab" 
                   [class.active]="sysmonTerminalTab() === 'macros'"
-                  (click)="sysmonTerminalTab.set('macros')">Process Kill</button>
+                  (click)="sysmonTerminalTab.set('macros')">Process Control</button>
                 <button 
                   class="term-tab" 
                   [class.active]="sysmonTerminalTab() === 'packet'"
@@ -452,6 +445,9 @@
     </div>
   </section>
 
+  <!-- Segment Divider -->
+  <div class="section-divider"></div>
+
   <!-- =========================================================================
        TECHNICAL SKILLS SECTION
        ========================================================================= -->
@@ -468,22 +464,30 @@
       @for (cat of skillCategories(); track cat.name) {
         <div class="skill-category-card card-surface">
           <div class="cat-header">
-            <i [class]="'fas ' + cat.icon + ' text-accent'"></i>
-            <h3 class="cat-title">{{ cat.name }}</h3>
+            <div class="cat-title-row">
+              <div class="cat-icon-title">
+                <i [class]="'fas ' + cat.icon + ' text-accent'"></i>
+                <h3 class="cat-title">{{ cat.name }}</h3>
+              </div>
+              <span class="cat-badge tech-pill font-mono">{{ cat.badge }}</span>
+            </div>
+            <p class="cat-desc">{{ cat.desc }}</p>
           </div>
 
-          <div class="skill-chips-list">
+          <div class="skill-tags-cloud">
             @for (sk of cat.skills; track sk.name) {
-              <div class="skill-chip" [class.highlight]="sk.highlight">
-                <span class="skill-name">{{ sk.name }}</span>
-                <span class="skill-level">{{ sk.level }}</span>
-              </div>
+              <span class="skill-tag" [class.highlight]="sk.highlight">
+                <span>{{ sk.name }}</span>
+              </span>
             }
           </div>
         </div>
       }
     </div>
   </section>
+
+  <!-- Segment Divider -->
+  <div class="section-divider"></div>
 
   <!-- =========================================================================
        EXPERIENCE & EDUCATION SECTION
@@ -571,6 +575,9 @@
       </div>
     </div>
   </section>
+
+  <!-- Segment Divider -->
+  <div class="section-divider"></div>
 
   <!-- =========================================================================
        CONTACT SECTION
