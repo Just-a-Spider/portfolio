@@ -1,11 +1,29 @@
 import { Component, signal, computed, AfterViewInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslationService, Lang, ProjectData } from './i18n';
+import { NavbarComponent } from './components/navbar/navbar';
+import { HeroComponent } from './components/hero/hero';
+import { PlaygroundComponent } from './components/playground/playground';
+import { ProjectsComponent } from './components/projects/projects';
+import { SkillsComponent } from './components/skills/skills';
+import { ExperienceComponent } from './components/experience/experience';
+import { ContactComponent } from './components/contact/contact';
+import { ModalComponent } from './components/modal/modal';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    NavbarComponent,
+    HeroComponent,
+    PlaygroundComponent,
+    ProjectsComponent,
+    SkillsComponent,
+    ExperienceComponent,
+    ContactComponent,
+    ModalComponent
+  ],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -25,11 +43,6 @@ export class App implements AfterViewInit {
   readonly selectedCategory = signal<string>('all');
   readonly selectedProject = signal<ProjectData | null>(null);
 
-  // Interactive Project Widgets State
-  readonly kuantumArchitectureTab = signal<'flow' | 'decisions'>('flow');
-  readonly sysmonTerminalTab = signal<'telemetry' | 'macros' | 'packet'>('telemetry');
-  readonly isSysmonKillingProcess = signal<boolean>(false);
-
   // Toast Notification
   readonly toastMessage = signal<string | null>(null);
   private toastTimeout: any = null;
@@ -42,24 +55,16 @@ export class App implements AfterViewInit {
     email: 'andre_arg_0116@outlook.com',
     github: 'https://github.com/Just-a-Spider',
     linkedin: 'https://www.linkedin.com/in/andre-argando%C3%B1a-3011a6263/',
+    npmBlobatar: 'https://www.npmjs.com/package/@just-a-spider/blobatar-ng',
     cvEn: 'cv-andre-argandona-en.pdf',
     cvEs: 'cv-andre-argandona-es.pdf'
   };
 
   // Reactive Data
-  readonly aboutData = computed(() => this.t().about);
   readonly projects = computed(() => this.t().projectsList);
   readonly skillCategories = computed(() => this.t().skillsList);
   readonly experiences = computed(() => this.t().experiencesList);
   readonly recognitions = computed(() => this.t().recognitionsList);
-
-  readonly featuredProjects = computed(() => this.projects().filter(p => p.featured));
-  readonly regularProjects = computed(() => {
-    const cat = this.selectedCategory();
-    const list = this.projects().filter(p => !p.featured);
-    if (cat === 'all') return list;
-    return list.filter(p => p.category === cat);
-  });
 
   ngAfterViewInit() {
     this.initScrollObserver();
@@ -107,12 +112,6 @@ export class App implements AfterViewInit {
     document.body.style.overflow = '';
   }
 
-  copyEmail() {
-    navigator.clipboard.writeText(this.profile.email).then(() => {
-      this.showToast(this.t().hero.copiedToast);
-    });
-  }
-
   showToast(msg: string) {
     if (this.toastTimeout) {
       clearTimeout(this.toastTimeout);
@@ -123,17 +122,10 @@ export class App implements AfterViewInit {
     }, 2800);
   }
 
-  getResumeLink(): string {
-    return this.currentLang() === 'es' ? this.profile.cvEs : this.profile.cvEn;
-  }
-
-  // Interactive SysMon Demo Widget
-  simulateKillProcess() {
-    this.isSysmonKillingProcess.set(true);
-    setTimeout(() => {
-      this.isSysmonKillingProcess.set(false);
-      this.showToast('Signal SIGKILL [9] dispatched to PID 4821 via /dev/uinput');
-    }, 700);
+  copyEmail() {
+    navigator.clipboard?.writeText(this.profile.email).then(() => {
+      this.showToast(this.t().hero.copiedToast);
+    });
   }
 
   // ScrollSpy with IntersectionObserver

@@ -1,0 +1,203 @@
+.experience-timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding-left: 28px;
+}
+
+.experience-timeline::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 12px;
+  bottom: 12px;
+  width: 2px;
+  background: var(--border-subtle);
+}
+
+.timeline-item {
+  position: relative;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -28px;
+  top: 24px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--bg-base);
+  border: 2px solid var(--accent-purple);
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.timeline-content {
+  padding: 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  transition: border-color var(--transition-normal);
+}
+
+.timeline-content:hover {
+  border-color: var(--border-hover);
+}
+
+.exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.exp-role {
+  font-size: 1.35rem;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+
+.exp-company-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+}
+
+.exp-company {
+  font-weight: 600;
+}
+
+.exp-location {
+  color: var(--text-dim);
+}
+
+.exp-period {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  padding: 4px 12px;
+  border-radius: var(--radius-sm);
+}
+
+.exp-highlights-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.exp-highlights-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.exp-highlights-list li i {
+  margin-top: 4px;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+.card-tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Education & Honors Grid */
+.education-honors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.edu-card, .honors-card {
+  padding: 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+}
+
+.edu-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.edu-header i {
+  font-size: 1.25rem;
+}
+
+.edu-title {
+  font-size: 1.25rem;
+  color: var(--text-main);
+}
+
+.edu-degree {
+  font-size: 1.05rem;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+.edu-school {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.edu-meta {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
+.honors-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.honor-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.honor-item i {
+  margin-top: 4px;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.honor-title {
+  font-size: 0.98rem;
+  color: var(--text-main);
+  margin-bottom: 2px;
+}
+
+.honor-entity {
+  font-size: 0.88rem;
+  color: var(--text-dim);
+}
+
+@media (max-width: 600px) {
+  .experience-timeline {
+    padding-left: 20px;
+  }
+  .timeline-dot {
+    left: -20px;
+  }
+  .timeline-content {
+    padding: 20px;
+  }
+}

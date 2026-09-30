@@ -1,0 +1,165 @@
+<section class="section-padding" id="projects">
+  <div class="app-container">
+    <!-- Section Header -->
+    <div class="section-header">
+      <span class="section-tag">{{ t().projects.tag }}</span>
+      <h2 class="section-title">{{ t().projects.title }}</h2>
+      <p class="section-subtitle">{{ t().projects.subtitle }}</p>
+    </div>
+
+    <!-- TIER 1: FLAGSHIP PROJECTS (Streamlined, punchy matte presentation) -->
+    <div class="flagship-list">
+      @for (proj of featuredProjects(); track proj.id) {
+        <article class="flagship-card card-surface">
+          <!-- Card Header & Metadata -->
+          <div class="flagship-header">
+            <div class="flagship-title-wrap">
+              <div class="flagship-badges">
+                <span class="badge-featured font-mono">
+                  <i class="fas fa-microchip"></i>
+                  {{ t().projects.featuredBadge }}
+                </span>
+                <span class="tech-pill font-mono category-pill">{{ proj.category }}</span>
+                @if (proj.metrics && proj.metrics.length > 0) {
+                  <span class="metric-highlight font-mono">{{ proj.metrics[0] }}</span>
+                }
+              </div>
+              <h3 class="flagship-title">{{ proj.title }}</h3>
+              <p class="flagship-subtitle font-mono">{{ proj.subtitle }}</p>
+            </div>
+
+            <div class="flagship-actions">
+              @if (proj.liveUrl) {
+                <a [href]="proj.liveUrl" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                  <i class="fas fa-external-link-alt"></i>
+                  <span>{{ proj.id === 'blobatar-ng' ? t().projects.npm : t().projects.liveDemo }}</span>
+                </a>
+              }
+              @if (proj.repoUrl) {
+                <a [href]="proj.repoUrl" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+                  <i class="fab fa-github"></i>
+                  <span>{{ t().projects.repo }}</span>
+                </a>
+              } @else {
+                <span class="private-repo-pill font-mono" title="Private Repository · Active Development">
+                  <i class="fas fa-lock"></i>
+                  <span>Private Repo</span>
+                </span>
+              }
+              <button type="button" class="btn btn-secondary btn-sm" (click)="viewDetails(proj)">
+                <i class="fas fa-info-circle"></i>
+                <span>{{ t().projects.viewArch }}</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Architecture Summary -->
+          <p class="flagship-desc">{{ proj.fullDesc }}</p>
+
+          <!-- Key Engineering Highlights Chips -->
+          @if (proj.architectureDetails?.keyDecisions) {
+            <div class="highlights-box">
+              <span class="highlights-label font-mono">{{ t().projects.keyHighlights }}:</span>
+              <div class="highlights-grid">
+                @for (h of proj.architectureDetails!.keyDecisions; track h) {
+                  <div class="highlight-chip">
+                    <i class="fas fa-check-circle text-accent"></i>
+                    <span>{{ h }}</span>
+                  </div>
+                }
+              </div>
+            </div>
+          }
+
+          <!-- Tech Stack Tags Row -->
+          <div class="flagship-tech-row">
+            @for (tech of proj.techStack; track tech) {
+              <span class="tech-pill font-mono">{{ tech }}</span>
+            }
+          </div>
+        </article>
+      }
+    </div>
+
+    <!-- TIER 2: SUPPORTING PROJECTS & OPEN SOURCE -->
+    <div class="supporting-projects-wrapper">
+      <div class="supporting-header">
+        <div class="supporting-title-group">
+          <span class="section-tag">{{ t().projects.tag }}</span>
+          <h3 class="supporting-title">{{ t().projects.all }}</h3>
+        </div>
+
+        <!-- Category Filter Pills -->
+        <div class="category-filters">
+          <button 
+            type="button"
+            class="filter-pill font-mono" 
+            [class.active]="selectedCategory() === 'all'" 
+            (click)="setCategory('all')">
+            {{ t().projects.all }}
+          </button>
+          <button 
+            type="button"
+            class="filter-pill font-mono" 
+            [class.active]="selectedCategory() === 'fullstack'" 
+            (click)="setCategory('fullstack')">
+            {{ t().projects.fullstack }}
+          </button>
+          <button 
+            type="button"
+            class="filter-pill font-mono" 
+            [class.active]="selectedCategory() === 'systems'" 
+            (click)="setCategory('systems')">
+            {{ t().projects.systems }}
+          </button>
+          <button 
+            type="button"
+            class="filter-pill font-mono" 
+            [class.active]="selectedCategory() === 'ai-cloud'" 
+            (click)="setCategory('ai-cloud')">
+            {{ t().projects.aiCloud }}
+          </button>
+        </div>
+      </div>
+
+      <!-- Supporting Projects Grid -->
+      <div class="supporting-grid">
+        @for (proj of regularProjects(); track proj.id) {
+          <article class="supporting-card card-surface">
+            <div class="supporting-card-top">
+              <span class="tech-pill font-mono category-pill">{{ proj.category }}</span>
+              <div class="supporting-card-links">
+                @if (proj.liveUrl) {
+                  <a [href]="proj.liveUrl" target="_blank" rel="noopener noreferrer" class="card-icon-link" title="Live Site">
+                    <i class="fas fa-external-link-alt"></i>
+                  </a>
+                }
+                @if (proj.repoUrl) {
+                  <a [href]="proj.repoUrl" target="_blank" rel="noopener noreferrer" class="card-icon-link" title="GitHub Repository">
+                    <i class="fab fa-github"></i>
+                  </a>
+                }
+              </div>
+            </div>
+
+            <h4 class="supporting-card-title">{{ proj.title }}</h4>
+            <p class="supporting-card-sub font-mono">{{ proj.subtitle }}</p>
+            <p class="supporting-card-desc">{{ proj.shortDesc }}</p>
+
+            <div class="supporting-card-bottom">
+              <div class="supporting-tech-list">
+                @for (tech of proj.techStack; track tech) {
+                  <span class="tech-pill font-mono">{{ tech }}</span>
+                }
+              </div>
+              <button type="button" class="btn-text font-mono" (click)="viewDetails(proj)">
+                <span>{{ t().projects.viewArch }}</span>
+                <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </article>
+        }
+      </div>
+    </div>
+  </div>
+</section>

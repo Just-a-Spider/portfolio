@@ -1,0 +1,86 @@
+<section id="experience" class="section-padding">
+  <div class="app-container">
+    <div class="section-header">
+      <span class="section-tag">
+        <i class="fas fa-briefcase"></i> {{ t().experience.tag }}
+      </span>
+      <h2 class="section-title">{{ t().experience.title }}</h2>
+      <p class="section-subtitle">{{ t().experience.subtitle }}</p>
+    </div>
+
+    <!-- Timeline of Experience -->
+    <div class="experience-timeline">
+      @for (exp of experiences(); track $index) {
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content card-surface">
+            <div class="exp-header">
+              <div>
+                <h3 class="exp-role">{{ exp.role }}</h3>
+                <div class="exp-company-row">
+                  <span class="exp-company text-accent">{{ exp.company }}</span>
+                  <span class="exp-bullet">·</span>
+                  <span class="exp-location">{{ exp.location }}</span>
+                </div>
+              </div>
+              <span class="exp-period font-mono">{{ exp.period }}</span>
+            </div>
+
+            <ul class="exp-highlights-list">
+              @for (hl of exp.highlights; track hl) {
+                <li>
+                  <i class="fas fa-angle-right text-accent"></i>
+                  <span>{{ hl }}</span>
+                </li>
+              }
+            </ul>
+
+            <div class="card-tech-stack">
+              @for (stk of exp.stack; track stk) {
+                <span class="tech-pill font-mono">{{ stk }}</span>
+              }
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- Education & Recognitions Grid -->
+    <div class="education-honors-grid">
+      <!-- Education Card -->
+      <div class="edu-card card-surface">
+        <div class="edu-header">
+          <i class="fas fa-university text-accent"></i>
+          <h3 class="edu-title">{{ t().experience.educationTitle }}</h3>
+        </div>
+        <div class="edu-details">
+          <h4 class="edu-degree">{{ t().experience.educationDegree }}</h4>
+          <p class="edu-school">{{ t().experience.educationSchool }}</p>
+          <div class="edu-meta font-mono">
+            <span>{{ t().experience.educationPeriod }}</span>
+            <span class="text-accent">· {{ t().experience.educationHonors }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Honors / Recognitions Card -->
+      <div class="honors-card card-surface">
+        <div class="edu-header">
+          <i class="fas fa-award text-accent"></i>
+          <h3 class="edu-title">{{ t().experience.honorsTitle }}</h3>
+        </div>
+        <div class="honors-list">
+          @for (rec of recognitions(); track rec.icon) {
+            <div class="honor-item">
+              <i [class]="'fas ' + rec.icon + ' text-accent'"></i>
+              <div>
+                <h4 class="honor-title">{{ rec.title }}</h4>
+                <p class="honor-entity">{{ rec.entity }} <span class="font-mono">({{ rec.date }})</span></p>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

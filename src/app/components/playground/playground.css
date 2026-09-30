@@ -1,0 +1,238 @@
+.playground-section {
+  padding: 48px 0;
+}
+
+.playground-card {
+  padding: 36px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+}
+
+.playground-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.header-left {
+  max-width: 720px;
+}
+
+.playground-title {
+  font-size: 1.6rem;
+  color: var(--text-main);
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.playground-desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.copy-install-btn {
+  font-size: 0.8rem;
+  padding: 8px 14px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.copy-install-btn:hover {
+  color: var(--text-main);
+  border-color: var(--accent-purple);
+  background: var(--bg-elevated);
+}
+
+.playground-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 36px;
+  align-items: center;
+}
+
+.preview-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+.avatar-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 140px;
+}
+
+.preview-meta {
+  width: 100%;
+  text-align: center;
+}
+
+.code-pill {
+  display: inline-block;
+  font-size: 0.75rem;
+  color: var(--accent-tangerine);
+  background: var(--bg-card);
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  word-break: break-all;
+}
+
+.controls-box {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.control-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.control-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+  font-weight: 600;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 14px;
+  font-size: 0.85rem;
+  color: var(--accent-purple);
+}
+
+.playground-input {
+  width: 100%;
+  padding: 12px 14px 12px 38px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-main);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.playground-input:focus {
+  border-color: var(--accent-purple);
+  background: var(--bg-card);
+}
+
+.playground-input::placeholder {
+  color: var(--text-dim);
+}
+
+.expressions-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.expr-btn {
+  font-size: 0.8rem;
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.expr-btn:hover {
+  color: var(--text-main);
+  border-color: var(--border-hover);
+  background: var(--bg-elevated);
+}
+
+.expr-btn.active {
+  background: var(--accent-purple-dim);
+  border-color: var(--accent-purple);
+  color: var(--accent-purple);
+  font-weight: 700;
+}
+
+.toggles-row {
+  flex-direction: row;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.toggle-btn:hover {
+  color: var(--text-main);
+  border-color: var(--border-hover);
+}
+
+.toggle-btn.active {
+  background: var(--accent-tangerine-dim);
+  border-color: var(--accent-tangerine);
+  color: var(--accent-tangerine);
+}
+
+.toggle-status {
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+@media (max-width: 900px) {
+  .playground-header {
+    flex-direction: column;
+  }
+  
+  .playground-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .preview-box {
+    max-width: 320px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .toggles-row {
+    flex-wrap: wrap;
+  }
+}

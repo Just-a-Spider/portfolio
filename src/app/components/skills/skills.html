@@ -1,0 +1,36 @@
+<section id="skills" class="section-padding">
+  <div class="app-container">
+    <div class="section-header">
+      <span class="section-tag">
+        <i class="fas fa-code"></i> {{ t().skills.tag }}
+      </span>
+      <h2 class="section-title">{{ t().skills.title }}</h2>
+      <p class="section-subtitle">{{ t().skills.subtitle }}</p>
+    </div>
+
+    <div class="skills-matrix-grid">
+      @for (cat of skillCategories(); track cat.icon) {
+        <div class="skill-category-card card-surface">
+          <div class="cat-header">
+            <div class="cat-title-row">
+              <div class="cat-icon-title">
+                <i [class]="'fas ' + cat.icon + ' text-accent'"></i>
+                <h3 class="cat-title">{{ cat.name }}</h3>
+              </div>
+              <span class="cat-badge tech-pill font-mono">{{ cat.badge }}</span>
+            </div>
+            <p class="cat-desc">{{ cat.desc }}</p>
+          </div>
+
+          <div class="skill-tags-cloud">
+            @for (sk of cat.skills; track sk.name) {
+              <span class="skill-tag" [class.highlight]="sk.highlight">
+                <span>{{ sk.name }}</span>
+              </span>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,79 @@
+@if (project()) {
+  <div class="modal-backdrop" (click)="onClose()">
+    <div class="modal-dialog card-surface" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <div>
+          <span class="tech-pill font-mono category-pill">{{ project()?.category }}</span>
+          <h3 class="modal-title">{{ project()?.title }}</h3>
+          <p class="modal-subtitle font-mono">{{ project()?.subtitle }}</p>
+        </div>
+        <button type="button" class="modal-close-btn" (click)="onClose()" aria-label="Close modal">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <p class="modal-desc">{{ project()?.fullDesc }}</p>
+
+        @if (project()?.architectureDetails?.keyDecisions; as decisions) {
+          @if (decisions.length > 0) {
+            <div class="modal-section-block">
+              <h4 class="modal-section-heading font-mono">{{ t().modal.keyDecisions }}</h4>
+              <ul class="modal-bullet-list">
+                @for (h of decisions; track h) {
+                  <li>
+                    <i class="fas fa-check-circle text-accent"></i>
+                    <span>{{ h }}</span>
+                  </li>
+                }
+              </ul>
+            </div>
+          }
+        }
+
+        @if (project()?.metrics; as metricsList) {
+          @if (metricsList.length > 0) {
+            <div class="modal-section-block">
+              <h4 class="modal-section-heading font-mono">{{ t().modal.metrics }}</h4>
+              <ul class="modal-bullet-list">
+                @for (m of metricsList; track m) {
+                  <li>
+                    <i class="fas fa-chart-line text-accent"></i>
+                    <span>{{ m }}</span>
+                  </li>
+                }
+              </ul>
+            </div>
+          }
+        }
+
+        <div class="modal-section-block">
+          <h4 class="modal-section-heading font-mono">{{ t().modal.techStack }}</h4>
+          <div class="modal-tech-stack">
+            @for (tech of project()?.techStack; track tech) {
+              <span class="tech-pill font-mono">{{ tech }}</span>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        @if (project()?.liveUrl) {
+          <a [href]="project()?.liveUrl" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+            <i class="fas fa-external-link-alt"></i>
+            <span>{{ project()?.id === 'blobatar-ng' ? t().modal.npm : t().modal.liveDemo }}</span>
+          </a>
+        }
+        @if (project()?.repoUrl) {
+          <a [href]="project()?.repoUrl" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+            <i class="fab fa-github"></i>
+            <span>{{ t().modal.repo }}</span>
+          </a>
+        }
+        <button type="button" class="btn btn-secondary btn-sm" (click)="onClose()">
+          {{ t().modal.close }}
+        </button>
+      </div>
+    </div>
+  </div>
+}

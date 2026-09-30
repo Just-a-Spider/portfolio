@@ -1,0 +1,110 @@
+<section class="playground-section" id="blobatar-sandbox">
+  <div class="app-container">
+    <div class="playground-card card-surface">
+      <!-- Section Tag & Title -->
+      <div class="playground-header">
+        <div class="header-left">
+          <span class="section-tag">{{ t().playground.tag }}</span>
+          <h2 class="playground-title">{{ t().playground.title }}</h2>
+          <p class="playground-desc">{{ t().playground.subtitle }}</p>
+        </div>
+
+        <div class="header-right">
+          <button 
+            type="button"
+            class="btn btn-secondary btn-sm copy-install-btn font-mono" 
+            (click)="copyInstallCommand()"
+            [title]="t().playground.copyBtn">
+            <i class="fas" [class.fa-check]="copied()" [class.fa-copy]="!copied()"></i>
+            <span>{{ copied() ? 'Copied to clipboard' : 'pnpm add @just-a-spider/blobatar-ng' }}</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Playground Main Body -->
+      <div class="playground-grid">
+        <!-- Interactive Preview Column -->
+        <div class="preview-box">
+          <div class="avatar-stage">
+            <blobatar 
+              [class.idle-frozen]="!animate()"
+              [name]="seed()" 
+              [size]="132" 
+              [animate]="animate() ? 'always' : false" 
+              [gaze]="gaze()" 
+              [expression]="expression()" />
+          </div>
+
+          <div class="preview-meta font-mono">
+            <span class="code-pill">
+              &lt;blobatar [name]="{{ seed() }}" expression="{{ expression() }}" [animate]="{{ animate() }}" [gaze]="{{ gaze() }}" /&gt;
+            </span>
+          </div>
+        </div>
+
+        <!-- Interactive Controls Column -->
+        <div class="controls-box">
+          <!-- Text Box Seed Input -->
+          <div class="control-row">
+            <label class="control-label font-mono" for="blobatar-seed-input">
+              {{ t().playground.seedLabel }}
+            </label>
+            <div class="input-wrapper">
+              <i class="fas fa-terminal input-icon"></i>
+              <input 
+                id="blobatar-seed-input"
+                type="text" 
+                [value]="seed()" 
+                (input)="updateSeed($event)" 
+                [placeholder]="t().playground.seedPlaceholder" 
+                class="playground-input font-mono"
+                autocomplete="off"
+                spellcheck="false" />
+            </div>
+          </div>
+
+          <!-- Expression Selectors -->
+          <div class="control-row">
+            <label class="control-label font-mono">
+              {{ t().playground.expressionLabel }}
+            </label>
+            <div class="expressions-grid">
+              @for (expr of availableExpressions; track expr) {
+                <button 
+                  type="button"
+                  class="expr-btn font-mono" 
+                  [class.active]="expression() === expr" 
+                  (click)="setExpression(expr)">
+                  {{ expr }}
+                </button>
+              }
+            </div>
+          </div>
+
+          <!-- Feature Toggles -->
+          <div class="control-row toggles-row">
+            <button 
+              type="button"
+              class="toggle-btn font-mono" 
+              [class.active]="gaze()" 
+              (click)="toggleGaze()">
+              <i class="fas" [class.fa-check-square]="gaze()" [class.fa-square]="!gaze()"></i>
+              <span>{{ t().playground.gazeLabel }}</span>
+              <span class="toggle-status">[{{ gaze() ? 'ON' : 'OFF' }}]</span>
+            </button>
+
+            <button 
+              type="button"
+              class="toggle-btn font-mono" 
+              [class.active]="animate()" 
+              (click)="toggleAnimate()">
+              <i class="fas" [class.fa-check-square]="animate()" [class.fa-square]="!animate()"></i>
+              <span>{{ t().playground.animateLabel }}</span>
+              <span class="toggle-status">[{{ animate() ? 'ON' : 'OFF' }}]</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

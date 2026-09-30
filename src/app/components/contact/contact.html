@@ -1,0 +1,83 @@
+<section id="contact" class="section-padding">
+  <div class="app-container">
+    <!-- Standardized Section Header -->
+    <div class="section-header text-center">
+      <span class="section-tag">
+        <i class="fas fa-paper-plane"></i> {{ t().contact.tag }}
+      </span>
+      <h2 class="section-title">{{ t().contact.title }}</h2>
+      <p class="section-subtitle centered-subtitle">{{ t().contact.desc }}</p>
+    </div>
+
+    <!-- Contact Matrix Card (Matte) -->
+    <div class="contact-main-card card-surface">
+      <!-- 4-Cell Information Grid -->
+      <div class="contact-details-grid">
+        <div class="contact-info-block">
+          <span class="info-lbl font-mono">{{ t().contact.emailLabel }}</span>
+          <a [href]="'mailto:' + profile().email" class="info-val text-accent">{{ profile().email }}</a>
+        </div>
+        <div class="contact-info-block">
+          <span class="info-lbl font-mono">{{ t().contact.locationLabel }}</span>
+          <span class="info-val">{{ profile().location }} (UTC-5)</span>
+        </div>
+        <div class="contact-info-block">
+          <span class="info-lbl font-mono">{{ t().contact.availabilityLabel }}</span>
+          <span class="info-val status-val">
+            <span class="status-indicator-dot"></span>
+            <span>{{ t().contact.availabilityValue }}</span>
+          </span>
+        </div>
+        <div class="contact-info-block">
+          <span class="info-lbl font-mono">{{ t().contact.targetRolesLabel }}</span>
+          <span class="info-val">{{ t().contact.targetRolesValue }}</span>
+        </div>
+      </div>
+
+      <!-- Action & Profile Links Bar -->
+      <div class="contact-actions-bar">
+        <div class="primary-actions">
+          <a [href]="'mailto:' + profile().email" class="btn btn-primary">
+            <i class="fas fa-envelope"></i>
+            <span>{{ t().contact.sendEmail }}</span>
+          </a>
+          <button type="button" (click)="onCopyEmail()" class="btn btn-secondary">
+            <i class="fas fa-copy"></i>
+            <span>{{ t().contact.copyEmail }}</span>
+          </button>
+        </div>
+
+        <div class="social-divider"></div>
+
+        <div class="social-actions">
+          <a [href]="profile().github" target="_blank" rel="noopener noreferrer" class="social-pill font-mono">
+            <i class="fab fa-github"></i>
+            <span>GitHub</span>
+          </a>
+          <a [href]="profile().linkedin" target="_blank" rel="noopener noreferrer" class="social-pill font-mono">
+            <i class="fab fa-linkedin"></i>
+            <span>LinkedIn</span>
+          </a>
+          <a [href]="profile().npmBlobatar" target="_blank" rel="noopener noreferrer" class="social-pill font-mono">
+            <i class="fab fa-npm"></i>
+            <span>@just-a-spider/blobatar-ng</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Global App Footer -->
+<footer class="app-footer">
+  <div class="app-container">
+    <div class="footer-inner">
+      <p class="footer-copy">© 2026 Gustavo Andre Argandoña Becerra · Crafted with Angular 22 & TypeScript.</p>
+      <div class="footer-links">
+        <a [href]="profile().github" target="_blank" rel="noopener noreferrer" class="font-mono">GitHub</a>
+        <a [href]="profile().linkedin" target="_blank" rel="noopener noreferrer" class="font-mono">LinkedIn</a>
+        <a [href]="profile().npmBlobatar" target="_blank" rel="noopener noreferrer" class="font-mono">NPM</a>
+      </div>
+    </div>
+  </div>
+</footer>
