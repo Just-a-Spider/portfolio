@@ -58,19 +58,22 @@ describe('App Component', () => {
     expect(compiled.querySelector('app-contact')).toBeTruthy();
   });
 
-  it('should render active blobatar SVG avatar in hero and playground', async () => {
+  it('should render active blobatar SVG avatar in playground', async () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
     await fixture.whenStable();
 
     const compiled = fixture.nativeElement as HTMLElement;
-    const blobatars = compiled.querySelectorAll('blobatar');
-    expect(blobatars.length).toBeGreaterThanOrEqual(2);
+    const playgroundEl = compiled.querySelector('app-playground');
+    expect(playgroundEl).toBeTruthy();
 
-    const firstSvg = blobatars[0].querySelector('svg');
-    expect(firstSvg).toBeTruthy();
-    expect(firstSvg?.classList.contains('blobatar-animated')).toBe(true);
-    expect(firstSvg?.classList.contains('blobatar-gaze')).toBe(true);
+    const playgroundBlobatar = playgroundEl?.querySelector('blobatar');
+    expect(playgroundBlobatar).toBeTruthy();
+
+    const svg = playgroundBlobatar?.querySelector('svg');
+    expect(svg).toBeTruthy();
+    expect(svg?.classList.contains('blobatar-animated')).toBe(true);
+    expect(svg?.classList.contains('blobatar-gaze')).toBe(true);
   });
 
   it('should toggle idle animation in playground and apply idle-frozen class', async () => {
@@ -103,7 +106,7 @@ describe('App Component', () => {
     expect(toggledSvg?.innerHTML).not.toContain('mo-always');
   });
 
-  it('should contain hero grid inside app-container for consistent gutter spacing', async () => {
+  it('should contain hero segment inside app-container and render 4 metrics', async () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
     await fixture.whenStable();
@@ -111,8 +114,11 @@ describe('App Component', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     const heroEl = compiled.querySelector('app-hero');
     const containerInsideHero = heroEl?.querySelector('.app-container');
-    const heroGrid = containerInsideHero?.querySelector('.hero-grid');
+    const heroSegment = containerInsideHero?.querySelector('.hero-segment');
     expect(containerInsideHero).toBeTruthy();
-    expect(heroGrid).toBeTruthy();
+    expect(heroSegment).toBeTruthy();
+
+    const metricItems = heroEl?.querySelectorAll('.metric-item');
+    expect(metricItems?.length).toBe(4);
   });
 });

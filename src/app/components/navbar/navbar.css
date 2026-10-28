@@ -193,6 +193,14 @@
   margin: 12px 0 16px;
 }
 
+.mobile-socials-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 14px;
+}
+
 @media (max-width: 900px) {
   .nav-links, .nav-cv-btn {
     display: none;
@@ -202,5 +210,11 @@
   }
   .mobile-menu {
     display: flex;
+  }
+}
+
+@media (max-width: 640px) {
+  .nav-socials {
+    display: none;
   }
 }

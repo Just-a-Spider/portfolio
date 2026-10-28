@@ -31,13 +31,14 @@
               [name]="seed()" 
               [size]="132" 
               [animate]="animate() ? 'always' : false" 
-              [gaze]="gaze()" 
+              [gaze]="gaze() ? 'pointer' : undefined" 
+              [gazeTravel]="3"
               [expression]="expression()" />
           </div>
 
           <div class="preview-meta font-mono">
             <span class="code-pill">
-              &lt;blobatar [name]="{{ seed() }}" expression="{{ expression() }}" [animate]="{{ animate() }}" [gaze]="{{ gaze() }}" /&gt;
+              &lt;blobatar [name]="{{ seed() }}" expression="{{ expression() }}" [animate]="{{ animate() }}" [gaze]="{{ gaze() ? 'true' : 'false' }}" [gazeTravel]="3" /&gt;
             </span>
           </div>
         </div>

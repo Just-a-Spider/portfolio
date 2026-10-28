@@ -72,6 +72,7 @@
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
+  min-width: 0;
 }
 
 .avatar-stage {
@@ -84,6 +85,7 @@
 .preview-meta {
   width: 100%;
   text-align: center;
+  min-width: 0;
 }
 
 .code-pill {
@@ -95,12 +97,15 @@
   border-radius: var(--radius-sm);
   border: 1px solid var(--border-subtle);
   word-break: break-all;
+  overflow-wrap: anywhere;
+  max-width: 100%;
 }
 
 .controls-box {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  min-width: 0;
 }
 
 .control-row {
@@ -234,5 +239,60 @@
 
   .toggles-row {
     flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 640px) {
+  .playground-card {
+    padding: 20px 16px;
+  }
+
+  .playground-header {
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    gap: 16px;
+  }
+
+  .playground-title {
+    font-size: 1.35rem;
+  }
+
+  .copy-install-btn {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .preview-box {
+    padding: 16px 12px;
+    gap: 12px;
+  }
+
+  .avatar-stage {
+    min-height: 110px;
+  }
+
+  .avatar-stage blobatar {
+    transform: scale(0.85);
+    transform-origin: center center;
+  }
+
+  .code-pill {
+    font-size: 0.68rem;
+    padding: 5px 8px;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .toggles-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .toggle-btn {
+    width: 100%;
+    justify-content: center;
   }
 }

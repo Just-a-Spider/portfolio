@@ -102,6 +102,17 @@
       <a [href]="getResumeLink()" target="_blank" class="btn btn-primary btn-sm" style="width: 100%;">
         <i class="fas fa-file-pdf"></i> {{ t().nav.downloadCv }}
       </a>
+      <div class="mobile-socials-row">
+        <a [href]="profile().github" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a [href]="profile().linkedin" target="_blank" rel="noopener noreferrer" class="social-icon" title="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a [href]="profile().npmBlobatar" target="_blank" rel="noopener noreferrer" class="social-icon" title="NPM Package">
+          <i class="fab fa-npm"></i>
+        </a>
+      </div>
     </div>
   }
 </header>

@@ -156,6 +156,12 @@ code, pre, .font-mono {
   padding: 0 24px;
 }
 
+@media (max-width: 640px) {
+  .app-container {
+    padding: 0 16px;
+  }
+}
+
 .section-padding {
   padding: 96px 0;
 }

@@ -15,16 +15,16 @@ export const TRANSLATIONS_ES: TranslationSchema = {
     titleMain: 'Ingeniería de Precisión,',
     titleHighlight: 'Plataformas de IA y Sistemas de Bajo Nivel',
     titleSuffix: 'Construidos con Rigor Técnico',
-    subtitle: 'Ingeniero de sistemas con más de 1.5 años de experiencia desarrollando aplicaciones reactivas en Angular, microservicios en FastAPI, arquitecturas semánticas con pgvector y sistemas embebidos en Linux/C. Autor de @just-a-spider/blobatar-ng en npm. Estudiante de 10mo ciclo en la Universidad de Huánuco (Tercio Superior).',
+    subtitle: 'Construyo aplicaciones web, plataformas de IA y herramientas de bajo nivel. Enfocado en arquitectura simple, interfaces rápidas y software confiable.',
     viewProjectsBtn: 'Ver Proyectos',
     downloadCvBtn: 'Descargar CV (PDF)',
     copyEmailBtn: 'Copiar Correo',
     copiedToast: '¡Correo copiado al portapapeles!',
     metrics: [
-      { val: '1.5+', unit: 'Años', lbl: 'Experiencia Web y Sistemas' },
-      { val: '10mo', unit: 'Ciclo', lbl: 'Ingeniería de Sistemas (UDH · Tercio Sup.)' },
-      { val: 'NPM', unit: 'Paquete', lbl: '@just-a-spider/blobatar-ng' },
-      { val: 'Python · Angular · C/Rust', unit: '', lbl: 'FastAPI, Signals y Sistemas' }
+      { val: 'Full-Stack', unit: 'Web', lbl: 'Angular Signals · Backends FastAPI' },
+      { val: 'IA y Vectores', unit: 'RAG', lbl: 'PostgreSQL pgvector · Búsqueda Semántica' },
+      { val: 'Bajo Nivel', unit: 'C / Rust', lbl: 'Drivers Linux · Sistemas Embebidos' },
+      { val: 'Arquitectura', unit: 'E2E', lbl: 'Contratos de API Limpios y Bases Sólidas' }
     ]
   },
   about: {
@@ -50,7 +50,7 @@ export const TRANSLATIONS_ES: TranslationSchema = {
       {
         icon: 'fa-code-branch',
         title: 'Código Abierto y Autoría de Paquetes',
-        desc: 'Autor de @just-a-spider/blobatar-ng en npm (adaptador Angular para blobatar de Alain00 con PR enviado upstream), enfocado en contratos de API limpios y reactividad nativa por Signals.'
+        desc: 'Autor de @just-a-spider/blobatar-ng en npm (adaptador Angular para blobatar de Alain00, oficialmente integrado upstream en PR #41), enfocado en contratos de API limpios y reactividad nativa por Signals.'
       }
     ]
   },
@@ -231,10 +231,10 @@ export const TRANSLATIONS_ES: TranslationSchema = {
       category: 'fullstack',
       subtitle: 'Adaptador Angular para Avatares SVG Geométricos Deterministas',
       shortDesc: 'Librería de código abierto publicada en npm adaptando blobatar de Alain00 para Angular. Incluye reactividad por Signals, seguimiento de mirada por cursor y 14 expresiones animadas.',
-      fullDesc: 'Creé y publiqué el adaptador para Angular del proyecto de código abierto blobatar de Alain00 (@just-a-spider/blobatar-ng en npm, con pull request enviado al repositorio principal). Desarrollado con Angular Signals para renderizado SVG ultraligero y reactivo sin ciclos innecesarios de detección de cambios. Incorpora seguimiento de cursor/puntero en tiempo real, animaciones CSS fluidas, proyección de contenido SVG personalizado y 14 expresiones dinámicas.',
+      fullDesc: 'Creé y publiqué el adaptador para Angular del proyecto de código abierto blobatar de Alain00 (@just-a-spider/blobatar-ng en npm, oficialmente integrado al repositorio principal en PR #41). Desarrollado con Angular Signals para renderizado SVG ultraligero y reactivo sin ciclos innecesarios de detección de cambios. Incorpora seguimiento de cursor/puntero en tiempo real, animaciones CSS fluidas, proyección de contenido SVG personalizado y 14 expresiones dinámicas.',
       techStack: ['Angular Signals', 'TypeScript', 'Generación SVG', 'Registro NPM', 'Seguimiento de Mirada', 'CSS Keyframes'],
       metrics: [
-        'Publicado en npm como @just-a-spider/blobatar-ng (adaptador Angular para blobatar de Alain00, PR en revisión upstream)',
+        'Publicado en npm como @just-a-spider/blobatar-ng (adaptador Angular oficialmente integrado upstream en Alain00/blobatar)',
         'Impulsado completamente por Angular Signals para óptimo rendimiento y cero sobrecarga de renderizado',
         'Seguimiento de puntero y cursor en tiempo real calculando ángulos relativos de pupila y mirada',
         'Catálogo integrado de 14 expresiones emocionales y soporte para proyección de elementos SVG hijos'

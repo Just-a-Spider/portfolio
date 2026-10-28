@@ -1,12 +1,13 @@
 import { Component, input, output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BlobatarComponent } from '@just-a-spider/blobatar-ng';
+import { BlobatarGaze } from '@just-a-spider/blobatar-ng/gaze';
 import { Lang, TranslationSchema } from '../../i18n';
 
 @Component({
   selector: 'app-playground',
   standalone: true,
-  imports: [CommonModule, BlobatarComponent],
+  imports: [CommonModule, BlobatarComponent, BlobatarGaze],
   templateUrl: './playground.html',
   styleUrl: './playground.css'
 })

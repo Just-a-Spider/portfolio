@@ -10,14 +10,13 @@
 
 <!-- Main Portfolio Layout -->
 <main>
-  <!-- Hero Section with Gaze & Animated Blobatar -->
+  <!-- Single Segment Hero Section -->
   <app-hero 
     [t]="t()" 
     [currentLang]="currentLang()" 
     [profile]="profile" 
     (viewProjects)="scrollToSection('projects')" 
-    (copyEmail)="copyEmail()" 
-    (expressionChanged)="showToast('Avatar expression: ' + $event)" />
+    (copyEmail)="copyEmail()" />
 
   <div class="section-divider"></div>
 

@@ -15,16 +15,16 @@ export const TRANSLATIONS_EN: TranslationSchema = {
     titleMain: 'High-Precision Engineering,',
     titleHighlight: 'AI Platforms & Low-Level Systems',
     titleSuffix: 'Architected with Technical Rigor',
-    subtitle: 'Systems engineer with 1.5+ years of practical experience developing reactive Angular applications, FastAPI services, semantic pgvector architectures, and embedded Linux/C systems. Author of @just-a-spider/blobatar-ng on npm. Final-year Systems Engineering student at Universidad de Huánuco (Upper Third).',
+    subtitle: 'I build web applications, AI platforms, and low-level tools. Focused on simple architecture, snappy interfaces, and reliable software.',
     viewProjectsBtn: 'Explore Systems',
     downloadCvBtn: 'Download CV (PDF)',
     copyEmailBtn: 'Copy Email',
     copiedToast: 'Email copied to clipboard!',
     metrics: [
-      { val: '1.5+', unit: 'Years', lbl: 'Full-Stack & Systems Engineering' },
-      { val: '10th', unit: 'Cycle', lbl: 'Systems Engineering (UDH · Upper Third)' },
-      { val: 'NPM', unit: 'Package', lbl: '@just-a-spider/blobatar-ng' },
-      { val: 'Python · Angular · C/Rust', unit: '', lbl: 'FastAPI, Signals & Systems' }
+      { val: 'Full-Stack', unit: 'Web', lbl: 'Angular Signals · FastAPI Backends' },
+      { val: 'AI & Vector', unit: 'RAG', lbl: 'PostgreSQL pgvector · LLM Retrieval' },
+      { val: 'Low-Level', unit: 'C / Rust', lbl: 'Linux Drivers · Embedded Systems' },
+      { val: 'Architecture', unit: 'E2E', lbl: 'Clean API Contracts & Solid Fundamentals' }
     ]
   },
   about: {
@@ -50,7 +50,7 @@ export const TRANSLATIONS_EN: TranslationSchema = {
       {
         icon: 'fa-code-branch',
         title: 'Open Source & Package Authorship',
-        desc: 'Author of @just-a-spider/blobatar-ng on npm (Angular adapter for Alain00\'s blobatar with upstream PR submitted), emphasizing clean API contracts and zero-dependency Signals state.'
+        desc: 'Author of @just-a-spider/blobatar-ng on npm (Angular adapter for Alain00\'s blobatar, officially merged upstream in PR #41), emphasizing clean API contracts and zero-dependency Signals state.'
       }
     ]
   },
@@ -231,10 +231,10 @@ export const TRANSLATIONS_EN: TranslationSchema = {
       category: 'fullstack',
       subtitle: 'Angular Adapter for Deterministic Geometric SVG Avatars',
       shortDesc: 'Published open-source npm library adapting Alain00\'s blobatar for Angular. Features Signals reactivity, pointer gaze tracking, and 14 animated facial expressions.',
-      fullDesc: 'Authored and published the Angular adapter for Alain00\'s open-source blobatar project (@just-a-spider/blobatar-ng on npm, with upstream PR submitted). Built with Angular Signals for lightweight, reactive SVG avatar rendering with zero unnecessary change detection cycles. Features real-time cursor/pointer gaze tracking, CSS keyframe idle animations, custom SVG content projection, 14 built-in expressions, and customizable color palettes.',
+      fullDesc: 'Authored and published the Angular adapter for Alain00\'s open-source blobatar project (@just-a-spider/blobatar-ng on npm, officially merged into upstream Alain00/blobatar in PR #41). Built with Angular Signals for lightweight, reactive SVG avatar rendering with zero unnecessary change detection cycles. Features real-time cursor/pointer gaze tracking, CSS keyframe idle animations, custom SVG content projection, 14 built-in expressions, and customizable color palettes.',
       techStack: ['Angular Signals', 'TypeScript', 'SVG Generation', 'NPM Registry', 'Gaze Tracking', 'CSS Keyframes'],
       metrics: [
-        'Published on npm as @just-a-spider/blobatar-ng (Angular adapter for Alain00\'s blobatar, PR submitted upstream)',
+        'Published on npm as @just-a-spider/blobatar-ng (Angular adapter officially merged upstream into Alain00/blobatar)',
         'Driven entirely by Angular Signals for optimal change detection and rendering performance',
         'Real-time pointer and cursor gaze tracking calculating relative angle and pupil positioning',
         'Built-in catalog of 14 dynamic expressions and support for child SVG content projection'
